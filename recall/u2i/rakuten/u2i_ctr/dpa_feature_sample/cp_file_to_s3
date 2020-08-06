@@ -1,0 +1,3 @@
+aws s3 cp ./tf_record_udf.py s3://smartad-dmp/warehouse/user/yukimura/dpa/u2i/conf/tf_record_udf.py;
+aws s3 cp ./u2i_dnn_feature_config.json s3://smartad-dmp/warehouse/user/yukimura/dpa/u2i/conf/u2i_dnn_feature_config.json;
+aws s3 cp ./u2i_dnn_feature_transformation_config.json s3://smartad-dmp/warehouse/user/yukimura/dpa/u2i/conf/u2i_dnn_feature_transformation_config.json;

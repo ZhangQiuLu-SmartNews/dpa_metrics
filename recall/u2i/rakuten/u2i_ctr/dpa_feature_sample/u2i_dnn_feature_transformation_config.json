@@ -1,0 +1,5902 @@
+{
+    "context_feature": {
+        "data": [
+            {
+                "type": "string",
+                "dependence": [
+                    "jst_hour"
+                ],
+                "name": "jst_hour",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "is_holiday"
+                ],
+                "name": "is_holiday",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "jst_day_of_week"
+                ],
+                "name": "jst_day_of_week",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "adunit_type_id"
+                ],
+                "name": "adunit_type_id",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "media_id"
+                ],
+                "name": "media_id",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "view_genre"
+                ],
+                "name": "view_genre",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "placement_type_id"
+                ],
+                "name": "placement_type_id",
+                "op": "get"
+            }
+        ]
+    },
+    "user_feature": {
+        "data": [
+            {
+                "type": "list",
+                "dependence": [
+                    "content_ids_list"
+                ],
+                "name": "item_action_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "has_view"
+                ],
+                "name": "has_view_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "has_add_to_car"
+                ],
+                "name": "has_car_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_avg_4w"
+                ],
+                "name": "click_prc_avg_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_max_4w"
+                ],
+                "name": "click_prc_max_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_12h"
+                ],
+                "name": "pb_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_min_12h"
+                ],
+                "name": "pb_prc_min_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_min_4w"
+                ],
+                "name": "pb_prc_min_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_lps"
+                ],
+                "name": "click_lps",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "ctr_4w"
+                ],
+                "name": "ctr_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_8w"
+                ],
+                "name": "pb_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "age_seg_30_34"
+                ],
+                "name": "age_seg_30_34",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "subscribe_channels_cnt"
+                ],
+                "name": "subscribe_channels_cnt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_4w"
+                ],
+                "name": "click_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cvr_4w"
+                ],
+                "name": "cvr_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_max_8w"
+                ],
+                "name": "pb_prc_max_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_avg_8w"
+                ],
+                "name": "pb_prc_avg_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_lps"
+                ],
+                "name": "pb_lps",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "ctr_3d"
+                ],
+                "name": "ctr_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_4w"
+                ],
+                "name": "reject_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_avg_3d"
+                ],
+                "name": "click_prc_avg_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_max_3d"
+                ],
+                "name": "click_prc_max_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_4w"
+                ],
+                "name": "vimp_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_3d"
+                ],
+                "name": "reject_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_avg_3d"
+                ],
+                "name": "pb_prc_avg_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_smart_ratio"
+                ],
+                "name": "read1m_smart_ratio",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "last_seen"
+                ],
+                "name": "last_seen",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_avg_time_web"
+                ],
+                "name": "read1m_avg_time_web",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_8w"
+                ],
+                "name": "vimp_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_min_1h"
+                ],
+                "name": "click_prc_min_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_min_1d"
+                ],
+                "name": "click_prc_min_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_min_2w"
+                ],
+                "name": "pb_prc_min_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_min_1w"
+                ],
+                "name": "click_prc_min_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "ctr_12h"
+                ],
+                "name": "ctr_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "age_seg_25_29"
+                ],
+                "name": "age_seg_25_29",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_max_2w"
+                ],
+                "name": "pb_prc_max_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_1h"
+                ],
+                "name": "vimp_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_1d"
+                ],
+                "name": "vimp_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_min_8w"
+                ],
+                "name": "click_prc_min_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_1w"
+                ],
+                "name": "vimp_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cvr_2w"
+                ],
+                "name": "cvr_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_avg_time_smart"
+                ],
+                "name": "read1m_avg_time_smart",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_max_1d"
+                ],
+                "name": "click_prc_max_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_lps"
+                ],
+                "name": "vimp_lps",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_max_1h"
+                ],
+                "name": "click_prc_max_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_max_1w"
+                ],
+                "name": "click_prc_max_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cvr_12h"
+                ],
+                "name": "cvr_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_avg_1d"
+                ],
+                "name": "pb_prc_avg_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_avg_1h"
+                ],
+                "name": "pb_prc_avg_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_max_1w"
+                ],
+                "name": "pb_prc_max_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_max_1h"
+                ],
+                "name": "pb_prc_max_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cdays"
+                ],
+                "name": "cdays",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_max_1d"
+                ],
+                "name": "pb_prc_max_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_1w"
+                ],
+                "name": "reject_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_8w"
+                ],
+                "name": "click_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "ctr_8w"
+                ],
+                "name": "ctr_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_active_days"
+                ],
+                "name": "read1m_active_days",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_12h"
+                ],
+                "name": "vimp_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_score"
+                ],
+                "name": "read1m_score",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_1d"
+                ],
+                "name": "reject_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "ctr_2w"
+                ],
+                "name": "ctr_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_min_8w"
+                ],
+                "name": "pb_prc_min_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_3d"
+                ],
+                "name": "pb_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cvr_8w"
+                ],
+                "name": "cvr_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_1h"
+                ],
+                "name": "reject_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pv"
+                ],
+                "name": "pv",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_min_2w"
+                ],
+                "name": "click_prc_min_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_avg_8w"
+                ],
+                "name": "click_prc_avg_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_8w"
+                ],
+                "name": "reject_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_max_12h"
+                ],
+                "name": "click_prc_max_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_3d"
+                ],
+                "name": "vimp_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_max_4w"
+                ],
+                "name": "pb_prc_max_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_pv"
+                ],
+                "name": "read1m_pv",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_4w"
+                ],
+                "name": "pb_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_avg_12h"
+                ],
+                "name": "click_prc_avg_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_max_2w"
+                ],
+                "name": "click_prc_max_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "gender_prob"
+                ],
+                "name": "gender_prob",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_12h"
+                ],
+                "name": "reject_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_max_12h"
+                ],
+                "name": "pb_prc_max_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_min_3d"
+                ],
+                "name": "pb_prc_min_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_1w"
+                ],
+                "name": "click_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "age_seg_50_64"
+                ],
+                "name": "age_seg_50_64",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_12h"
+                ],
+                "name": "click_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cvr_3d"
+                ],
+                "name": "cvr_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_1d"
+                ],
+                "name": "click_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_max_3d"
+                ],
+                "name": "pb_prc_max_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "age_seg_18_24"
+                ],
+                "name": "age_seg_18_24",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_1h"
+                ],
+                "name": "click_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_lps"
+                ],
+                "name": "reject_lps",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pvperday"
+                ],
+                "name": "pvperday",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_1w"
+                ],
+                "name": "pb_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_max_8w"
+                ],
+                "name": "click_prc_max_8w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_1h"
+                ],
+                "name": "pb_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "age_seg_over_65"
+                ],
+                "name": "age_seg_over_65",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_avg_4w"
+                ],
+                "name": "pb_prc_avg_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_2w"
+                ],
+                "name": "click_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_avg_12h"
+                ],
+                "name": "pb_prc_avg_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_1d"
+                ],
+                "name": "pb_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_ectr"
+                ],
+                "name": "read1m_ectr",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_days_score"
+                ],
+                "name": "read1m_days_score",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "read1m_vimp"
+                ],
+                "name": "read1m_vimp",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_avg_2w"
+                ],
+                "name": "click_prc_avg_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "reject_2w"
+                ],
+                "name": "reject_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_avg_2w"
+                ],
+                "name": "pb_prc_avg_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "ctr_1d"
+                ],
+                "name": "ctr_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_min_1w"
+                ],
+                "name": "pb_prc_min_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_2w"
+                ],
+                "name": "pb_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_avg_1w"
+                ],
+                "name": "pb_prc_avg_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "ctr_1h"
+                ],
+                "name": "ctr_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_3d"
+                ],
+                "name": "click_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "ctr_1w"
+                ],
+                "name": "ctr_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_min_1d"
+                ],
+                "name": "pb_prc_min_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_min_4w"
+                ],
+                "name": "click_prc_min_4w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "pb_prc_min_1h"
+                ],
+                "name": "pb_prc_min_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "age_seg_40_49"
+                ],
+                "name": "age_seg_40_49",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_min_12h"
+                ],
+                "name": "click_prc_min_12h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "vimp_2w"
+                ],
+                "name": "vimp_2w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_avg_1h"
+                ],
+                "name": "click_prc_avg_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cvr_1w"
+                ],
+                "name": "cvr_1w",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "age"
+                ],
+                "name": "age",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_avg_1d"
+                ],
+                "name": "click_prc_avg_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_min_3d"
+                ],
+                "name": "click_prc_min_3d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "age_seg_35_39"
+                ],
+                "name": "age_seg_35_39",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cvr_1d"
+                ],
+                "name": "cvr_1d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cvr_1h"
+                ],
+                "name": "cvr_1h",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "click_prc_avg_1w"
+                ],
+                "name": "click_prc_avg_1w",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "gender"
+                ],
+                "name": "gender",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "age_null"
+                ],
+                "name": "age_null",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "city_code"
+                ],
+                "name": "city_code",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "prefecture_id"
+                ],
+                "name": "prefecture_id",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "area_id"
+                ],
+                "name": "area_id",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "carrier_type"
+                ],
+                "name": "carrier_type",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "device_optout"
+                ],
+                "name": "device_optout",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "device_type"
+                ],
+                "name": "device_type",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "os_version"
+                ],
+                "name": "os_version",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "device_locale"
+                ],
+                "name": "device_locale",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "last_geoip"
+                ],
+                "name": "last_geoip",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_click_seq_1h"
+                ],
+                "name": "cmp_click_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_pb_seq_1h"
+                ],
+                "name": "cmp_pb_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_click_seq_1h"
+                ],
+                "name": "adr_click_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_pb_seq_1h"
+                ],
+                "name": "adr_pb_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_click_seq_1h"
+                ],
+                "name": "brd_click_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_pb_seq_1h"
+                ],
+                "name": "brd_pb_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_click_seq_1h"
+                ],
+                "name": "cat_click_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_pb_seq_1h"
+                ],
+                "name": "cat_pb_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_click_seq_1h"
+                ],
+                "name": "cat1_click_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_pb_seq_1h"
+                ],
+                "name": "cat1_pb_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_click_seq_1h"
+                ],
+                "name": "cat2_click_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_pb_seq_1h"
+                ],
+                "name": "cat2_pb_seq_1h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_click_seq_12h"
+                ],
+                "name": "cmp_click_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_pb_seq_12h"
+                ],
+                "name": "cmp_pb_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_click_seq_12h"
+                ],
+                "name": "adr_click_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_pb_seq_12h"
+                ],
+                "name": "adr_pb_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_click_seq_12h"
+                ],
+                "name": "brd_click_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_pb_seq_12h"
+                ],
+                "name": "brd_pb_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_click_seq_12h"
+                ],
+                "name": "cat_click_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_pb_seq_12h"
+                ],
+                "name": "cat_pb_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_click_seq_12h"
+                ],
+                "name": "cat1_click_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_pb_seq_12h"
+                ],
+                "name": "cat1_pb_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_click_seq_12h"
+                ],
+                "name": "cat2_click_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_pb_seq_12h"
+                ],
+                "name": "cat2_pb_seq_12h",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_click_seq_1d"
+                ],
+                "name": "cmp_click_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_pb_seq_1d"
+                ],
+                "name": "cmp_pb_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_click_seq_1d"
+                ],
+                "name": "adr_click_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_pb_seq_1d"
+                ],
+                "name": "adr_pb_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_click_seq_1d"
+                ],
+                "name": "brd_click_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_pb_seq_1d"
+                ],
+                "name": "brd_pb_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_click_seq_1d"
+                ],
+                "name": "cat_click_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_pb_seq_1d"
+                ],
+                "name": "cat_pb_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_click_seq_1d"
+                ],
+                "name": "cat1_click_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_pb_seq_1d"
+                ],
+                "name": "cat1_pb_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_click_seq_1d"
+                ],
+                "name": "cat2_click_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_pb_seq_1d"
+                ],
+                "name": "cat2_pb_seq_1d",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_click_seq_1w"
+                ],
+                "name": "cmp_click_seq_1w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_click_seq_1w"
+                ],
+                "name": "adr_click_seq_1w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_click_seq_1w"
+                ],
+                "name": "brd_click_seq_1w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_click_seq_1w"
+                ],
+                "name": "cat_click_seq_1w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_click_seq_1w"
+                ],
+                "name": "cat1_click_seq_1w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_click_seq_1w"
+                ],
+                "name": "cat2_click_seq_1w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_click_seq_2w"
+                ],
+                "name": "cmp_click_seq_2w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_click_seq_2w"
+                ],
+                "name": "adr_click_seq_2w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_click_seq_2w"
+                ],
+                "name": "brd_click_seq_2w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_click_seq_2w"
+                ],
+                "name": "cat_click_seq_2w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_click_seq_2w"
+                ],
+                "name": "cat1_click_seq_2w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_click_seq_2w"
+                ],
+                "name": "cat2_click_seq_2w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_click_seq_4w"
+                ],
+                "name": "cmp_click_seq_4w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_click_seq_4w"
+                ],
+                "name": "adr_click_seq_4w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_click_seq_4w"
+                ],
+                "name": "brd_click_seq_4w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_click_seq_4w"
+                ],
+                "name": "cat_click_seq_4w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_click_seq_4w"
+                ],
+                "name": "cat1_click_seq_4w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_click_seq_4w"
+                ],
+                "name": "cat2_click_seq_4w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_click_seq_8w"
+                ],
+                "name": "cmp_click_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cmp_pb_seq_8w"
+                ],
+                "name": "cmp_pb_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_click_seq_8w"
+                ],
+                "name": "adr_click_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "adr_pb_seq_8w"
+                ],
+                "name": "adr_pb_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_click_seq_8w"
+                ],
+                "name": "brd_click_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "brd_pb_seq_8w"
+                ],
+                "name": "brd_pb_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_click_seq_8w"
+                ],
+                "name": "cat_click_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat_pb_seq_8w"
+                ],
+                "name": "cat_pb_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_click_seq_8w"
+                ],
+                "name": "cat1_click_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat1_pb_seq_8w"
+                ],
+                "name": "cat1_pb_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_click_seq_8w"
+                ],
+                "name": "cat2_click_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "user_behavior_seq"
+                ],
+                "name": "user_behavior_seq",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "cat2_pb_seq_8w"
+                ],
+                "name": "cat2_pb_seq_8w",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "subscribe_channel_list"
+                ],
+                "name": "subscribe_channel_list",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "interests_list"
+                ],
+                "name": "interests_list",
+                "op": "get"
+            },
+            {
+                "type": "map",
+                "dependence": [
+                    "read1m_tags_score_map"
+                ],
+                "name": "read1m_tags_score_map",
+                "op": "get"
+            },
+            {
+                "type": "map",
+                "dependence": [
+                    "read1m_article_categories_score_map"
+                ],
+                "name": "read1m_article_categories_score_map",
+                "op": "get"
+            }
+        ]
+    },
+    "cross_feature": {
+        "data": [
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:channel_pref_map",
+                    "context_feature:channel_alias"
+                ],
+                "name": "channel_pref",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:read1m_channels_score_map",
+                    "context_feature:channel_alias"
+                ],
+                "name": "read1m_channel_score",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:access_hour_map",
+                    "context_feature:jst_hour"
+                ],
+                "name": "access_hour",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:read1m_hours_score_map",
+                    "context_feature:jst_hour"
+                ],
+                "name": "read1m_hour_score",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_lps",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_lps",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_lps",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_lps",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_lps",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_lps",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_lps",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_lps",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_lps",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_lps",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_lps",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_lps",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_lps",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_lps",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_lps",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_lps",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_lps",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_lps",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_lps",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_lps",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_lps",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_lps",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_lps",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_lps",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_lps",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_1h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_1h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_ctr_1h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_ctr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_1h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_cvr_1h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_cvr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_1h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_1h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_1h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_ctr_1h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_ctr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_1h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_cvr_1h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_cvr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_1h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_1h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_1h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_ctr_1h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_ctr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_1h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_cvr_1h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_cvr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_1h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_1h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_1h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_ctr_1h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_ctr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_1h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_cvr_1h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_cvr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_1h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_1h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_1h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_ctr_1h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_ctr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_1h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_cvr_1h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_cvr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_1h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_1h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_1h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_ctr_1h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_ctr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_1h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_cvr_1h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_cvr_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_1h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_1h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_12h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_12h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_ctr_12h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_ctr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_12h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_cvr_12h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_cvr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_12h",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_12h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_12h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_ctr_12h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_ctr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_12h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_cvr_12h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_cvr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_12h",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_12h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_12h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_ctr_12h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_ctr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_12h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_cvr_12h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_cvr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_12h",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_12h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_12h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_ctr_12h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_ctr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_12h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_cvr_12h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_cvr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_12h",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_12h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_12h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_ctr_12h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_ctr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_12h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_cvr_12h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_cvr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_12h",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_12h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_12h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_ctr_12h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_ctr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_12h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_cvr_12h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_cvr_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_12h",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_12h",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_1d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_1d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_ctr_1d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_ctr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_1d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_cvr_1d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_cvr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_1d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_1d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_1d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_ctr_1d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_ctr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_1d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_cvr_1d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_cvr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_1d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_1d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_1d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_ctr_1d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_ctr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_1d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_cvr_1d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_cvr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_1d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_1d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_1d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_ctr_1d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_ctr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_1d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_cvr_1d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_cvr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_1d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_1d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_1d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_ctr_1d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_ctr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_1d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_cvr_1d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_cvr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_1d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_1d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_1d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_ctr_1d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_ctr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_1d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_cvr_1d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_cvr_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_1d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_1d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_3d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_3d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_ctr_3d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_ctr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_3d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_cvr_3d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_cvr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_3d",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_3d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_3d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_ctr_3d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_ctr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_3d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_cvr_3d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_cvr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_3d",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_3d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_3d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_ctr_3d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_ctr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_3d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_cvr_3d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_cvr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_3d",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_3d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_3d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_ctr_3d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_ctr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_3d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_cvr_3d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_cvr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_3d",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_3d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_3d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_ctr_3d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_ctr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_3d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_cvr_3d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_cvr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_3d",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_3d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_3d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_ctr_3d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_ctr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_3d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_cvr_3d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_cvr_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_3d",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_3d",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_1w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_1w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_ctr_1w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_ctr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_1w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_cvr_1w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_cvr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_1w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_1w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_1w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_ctr_1w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_ctr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_1w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_cvr_1w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_cvr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_1w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_1w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_1w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_ctr_1w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_ctr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_1w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_cvr_1w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_cvr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_1w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_1w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_1w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_ctr_1w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_ctr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_1w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_cvr_1w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_cvr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_1w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_1w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_1w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_ctr_1w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_ctr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_1w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_cvr_1w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_cvr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_1w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_1w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_1w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_ctr_1w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_ctr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_1w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_cvr_1w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_cvr_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_1w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_1w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_2w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_2w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_ctr_2w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_ctr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_2w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_cvr_2w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_cvr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_2w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_2w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_2w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_ctr_2w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_ctr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_2w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_cvr_2w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_cvr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_2w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_2w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_2w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_ctr_2w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_ctr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_2w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_cvr_2w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_cvr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_2w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_2w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_2w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_ctr_2w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_ctr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_2w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_cvr_2w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_cvr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_2w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_2w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_2w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_ctr_2w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_ctr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_2w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_cvr_2w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_cvr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_2w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_2w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_2w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_ctr_2w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_ctr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_2w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_cvr_2w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_cvr_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_2w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_2w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_4w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_4w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_ctr_4w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_ctr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_4w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_cvr_4w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_cvr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_4w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_4w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_4w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_ctr_4w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_ctr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_4w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_cvr_4w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_cvr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_4w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_4w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_4w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_ctr_4w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_ctr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_4w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_cvr_4w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_cvr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_4w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_4w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_4w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_ctr_4w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_ctr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_4w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_cvr_4w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_cvr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_4w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_4w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_4w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_ctr_4w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_ctr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_4w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_cvr_4w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_cvr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_4w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_4w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_4w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_ctr_4w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_ctr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_4w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_cvr_4w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_cvr_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_4w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_4w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_vimp_8w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_vimp_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_click_8w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_click_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_ctr_8w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_ctr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_pb_8w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_pb_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_cvr_8w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_cvr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cmp_reject_8w",
+                    "item_feature:cmp"
+                ],
+                "name": "cmp_reject_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_vimp_8w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_vimp_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_click_8w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_click_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_ctr_8w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_ctr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_pb_8w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_pb_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_cvr_8w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_cvr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:adr_reject_8w",
+                    "item_feature:adr"
+                ],
+                "name": "adr_reject_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_vimp_8w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_vimp_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_click_8w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_click_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_ctr_8w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_ctr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_pb_8w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_pb_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_cvr_8w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_cvr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:brd_reject_8w",
+                    "item_feature:brd"
+                ],
+                "name": "brd_reject_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_vimp_8w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_vimp_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_click_8w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_click_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_ctr_8w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_ctr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_pb_8w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_pb_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_cvr_8w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_cvr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat_reject_8w",
+                    "item_feature:cat"
+                ],
+                "name": "cat_reject_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_vimp_8w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_vimp_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_click_8w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_click_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_ctr_8w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_ctr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_pb_8w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_pb_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_cvr_8w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_cvr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat1_reject_8w",
+                    "item_feature:cat1"
+                ],
+                "name": "cat1_reject_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_vimp_8w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_vimp_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_click_8w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_click_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_ctr_8w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_ctr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_pb_8w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_pb_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_cvr_8w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_cvr_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "map",
+                "type": "numeric",
+                "dependence": [
+                    "user_feature:cat2_reject_8w",
+                    "item_feature:cat2"
+                ],
+                "name": "cat2_reject_8w",
+                "op": "get"
+            },
+            {
+                "data_type": "numeric",
+                "type": "numeric",
+                "dependence": [
+                    "item_feature:click_1d",
+                    "item_feature:vimp_1d"
+                ],
+                "name": "realtime_cmp_ctr_1d",
+                "op": "divide_ceil1"
+            },
+            {
+                "data_type": "numeric",
+                "type": "numeric",
+                "dependence": [
+                    "item_feature:pb_1d",
+                    "item_feature:click_1d"
+                ],
+                "name": "realtime_cmp_cvr_1d",
+                "op": "divide_ceil1"
+            }
+        ]
+    },
+    "item_feature": {
+        "data": [
+            {
+                "type": "numeric",
+                "dependence": [
+                    "max_price"
+                ],
+                "name": "max_price",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "target_cpa_e6"
+                ],
+                "name": "target_cpa_e6",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "payment_limit_e6"
+                ],
+                "name": "payment_limit_e6",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_click_15d"
+                ],
+                "name": "a_click_15d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_click_7d"
+                ],
+                "name": "a_click_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_click_lt"
+                ],
+                "name": "a_click_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_click_rank_7d"
+                ],
+                "name": "a_click_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_click_rank_lt"
+                ],
+                "name": "a_click_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_cpa_7d"
+                ],
+                "name": "a_cpa_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_cpa_lt"
+                ],
+                "name": "a_cpa_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_ctr_7d"
+                ],
+                "name": "a_ctr_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_ctr_lt"
+                ],
+                "name": "a_ctr_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_ctr_rank_7d"
+                ],
+                "name": "a_ctr_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_ctr_rank_lt"
+                ],
+                "name": "a_ctr_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_cvr_7d"
+                ],
+                "name": "a_cvr_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_cvr_lt"
+                ],
+                "name": "a_cvr_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_cvr_rank_7d"
+                ],
+                "name": "a_cvr_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_cvr_rank_lt"
+                ],
+                "name": "a_cvr_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_freq_lt"
+                ],
+                "name": "a_freq_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_freq_rank_lt"
+                ],
+                "name": "a_freq_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_pb_7d"
+                ],
+                "name": "a_pb_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_pb_lt"
+                ],
+                "name": "a_pb_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_pb_rank_7d"
+                ],
+                "name": "a_pb_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_pb_rank_lt"
+                ],
+                "name": "a_pb_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_price_7d"
+                ],
+                "name": "a_price_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_price_lt"
+                ],
+                "name": "a_price_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_reject_7d"
+                ],
+                "name": "a_reject_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_reject_lt"
+                ],
+                "name": "a_reject_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_reject_rank_7d"
+                ],
+                "name": "a_reject_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_reject_rank_lt"
+                ],
+                "name": "a_reject_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_sales_7d"
+                ],
+                "name": "a_sales_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_sales_lt"
+                ],
+                "name": "a_sales_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_uu_lt"
+                ],
+                "name": "a_uu_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_uu_rank_lt"
+                ],
+                "name": "a_uu_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_vimp_7d"
+                ],
+                "name": "a_vimp_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_vimp_lt"
+                ],
+                "name": "a_vimp_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_vimp_rank_7d"
+                ],
+                "name": "a_vimp_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "a_vimp_rank_lt"
+                ],
+                "name": "a_vimp_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_click_7d"
+                ],
+                "name": "c_click_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_click_lt"
+                ],
+                "name": "c_click_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_click_rank_7d"
+                ],
+                "name": "c_click_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_click_rank_lt"
+                ],
+                "name": "c_click_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_cpa_7d"
+                ],
+                "name": "c_cpa_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_cpa_lt"
+                ],
+                "name": "c_cpa_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_ctr_7d"
+                ],
+                "name": "c_ctr_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_ctr_lt"
+                ],
+                "name": "c_ctr_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_ctr_rank_7d"
+                ],
+                "name": "c_ctr_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_ctr_rank_lt"
+                ],
+                "name": "c_ctr_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_cvr_7d"
+                ],
+                "name": "c_cvr_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_cvr_lt"
+                ],
+                "name": "c_cvr_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_cvr_rank_7d"
+                ],
+                "name": "c_cvr_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_cvr_rank_lt"
+                ],
+                "name": "c_cvr_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_freq_lt"
+                ],
+                "name": "c_freq_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_freq_rank_lt"
+                ],
+                "name": "c_freq_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_pb_7d"
+                ],
+                "name": "c_pb_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_pb_lt"
+                ],
+                "name": "c_pb_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_pb_rank_7d"
+                ],
+                "name": "c_pb_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_pb_rank_lt"
+                ],
+                "name": "c_pb_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_price_7d"
+                ],
+                "name": "c_price_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_price_lt"
+                ],
+                "name": "c_price_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_reject_7d"
+                ],
+                "name": "c_reject_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_reject_lt"
+                ],
+                "name": "c_reject_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_reject_rank_7d"
+                ],
+                "name": "c_reject_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_reject_rank_lt"
+                ],
+                "name": "c_reject_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_sales_7d"
+                ],
+                "name": "c_sales_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_sales_lt"
+                ],
+                "name": "c_sales_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_uu_lt"
+                ],
+                "name": "c_uu_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_uu_rank_lt"
+                ],
+                "name": "c_uu_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_vimp_7d"
+                ],
+                "name": "c_vimp_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_vimp_lt"
+                ],
+                "name": "c_vimp_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_vimp_rank_7d"
+                ],
+                "name": "c_vimp_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "c_vimp_rank_lt"
+                ],
+                "name": "c_vimp_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_click_7d"
+                ],
+                "name": "cat_click_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_click_lt"
+                ],
+                "name": "cat_click_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_click_rank_7d"
+                ],
+                "name": "cat_click_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_click_rank_lt"
+                ],
+                "name": "cat_click_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_cpa_7d"
+                ],
+                "name": "cat_cpa_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_cpa_lt"
+                ],
+                "name": "cat_cpa_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_ctr_7d"
+                ],
+                "name": "cat_ctr_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_ctr_lt"
+                ],
+                "name": "cat_ctr_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_ctr_rank_7d"
+                ],
+                "name": "cat_ctr_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_ctr_rank_lt"
+                ],
+                "name": "cat_ctr_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_cvr_7d"
+                ],
+                "name": "cat_cvr_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_cvr_lt"
+                ],
+                "name": "cat_cvr_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_cvr_rank_7d"
+                ],
+                "name": "cat_cvr_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_cvr_rank_lt"
+                ],
+                "name": "cat_cvr_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_pb_7d"
+                ],
+                "name": "cat_pb_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_pb_lt"
+                ],
+                "name": "cat_pb_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_pb_rank_7d"
+                ],
+                "name": "cat_pb_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_pb_rank_lt"
+                ],
+                "name": "cat_pb_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_price_7d"
+                ],
+                "name": "cat_price_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_price_lt"
+                ],
+                "name": "cat_price_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_reject_7d"
+                ],
+                "name": "cat_reject_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_reject_lt"
+                ],
+                "name": "cat_reject_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_reject_rank_7d"
+                ],
+                "name": "cat_reject_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_reject_rank_lt"
+                ],
+                "name": "cat_reject_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_sales_7d"
+                ],
+                "name": "cat_sales_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_sales_lt"
+                ],
+                "name": "cat_sales_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_vimp_7d"
+                ],
+                "name": "cat_vimp_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_vimp_lt"
+                ],
+                "name": "cat_vimp_lt",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_vimp_rank_7d"
+                ],
+                "name": "cat_vimp_rank_7d",
+                "op": "get"
+            },
+            {
+                "type": "numeric",
+                "dependence": [
+                    "cat_vimp_rank_lt"
+                ],
+                "name": "cat_vimp_rank_lt",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "cmp"
+                ],
+                "name": "cmp",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "cat1"
+                ],
+                "name": "cat1",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "cat2"
+                ],
+                "name": "cat2",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "cat"
+                ],
+                "name": "cat",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "adr"
+                ],
+                "name": "adr",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "brd"
+                ],
+                "name": "brd",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "video"
+                ],
+                "name": "video",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "payment_type"
+                ],
+                "name": "payment_type",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "product_code"
+                ],
+                "name": "product_code",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "click_action"
+                ],
+                "name": "click_action",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "tracking_tool_type"
+                ],
+                "name": "tracking_tool_type",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "self_serve"
+                ],
+                "name": "self_serve",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "creative_optimizer_enabled"
+                ],
+                "name": "creative_optimizer_enabled",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "footprint_enabled"
+                ],
+                "name": "footprint_enabled",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "adid_white_filter_enabled"
+                ],
+                "name": "adid_white_filter_enabled",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "lookalike_enabled"
+                ],
+                "name": "lookalike_enabled",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "cpa_optimizer_enabled"
+                ],
+                "name": "cpa_optimizer_enabled",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "dynamic_bidding_enabled"
+                ],
+                "name": "dynamic_bidding_enabled",
+                "op": "get"
+            },
+            {
+                "type": "string",
+                "dependence": [
+                    "preferred_webview_enabled"
+                ],
+                "name": "preferred_webview_enabled",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "white_genders"
+                ],
+                "name": "white_genders",
+                "op": "get"
+            },
+            {
+                "type": "list",
+                "dependence": [
+                    "white_devices"
+                ],
+                "name": "white_devices",
+                "op": "get"
+            }
+        ]
+    }
+}
