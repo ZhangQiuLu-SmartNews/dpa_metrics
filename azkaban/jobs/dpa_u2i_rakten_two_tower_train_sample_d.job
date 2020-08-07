@@ -1,0 +1,4 @@
+
+type=command
+command=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'`"
+dependencies=dpa_rakuten_user_item_session_d

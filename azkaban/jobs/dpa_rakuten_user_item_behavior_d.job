@@ -1,0 +1,3 @@
+
+type=command
+command=bash -c "bash ../bin/exec_presto_py dpa_rakuten_user_item_behavior_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'`"
