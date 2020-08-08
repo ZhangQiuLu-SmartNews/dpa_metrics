@@ -1,4 +1,10 @@
 
 type=command
-command=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'`"
+command=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'` -k dt_data=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'`"
+command.1=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'` -k dt_data=`date -d '${azkaban.flow.start.timestamp} - 1 day' '+%Y-%m-%d'`"
+command.2=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'` -k dt_data=`date -d '${azkaban.flow.start.timestamp} - 2 day' '+%Y-%m-%d'`"
+command.3=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'` -k dt_data=`date -d '${azkaban.flow.start.timestamp} - 3 day' '+%Y-%m-%d'`"
+command.4=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'` -k dt_data=`date -d '${azkaban.flow.start.timestamp} - 4 day' '+%Y-%m-%d'`"
+command.5=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'` -k dt_data=`date -d '${azkaban.flow.start.timestamp} - 5 day' '+%Y-%m-%d'`"
+command.6=bash -c "bash ../bin/exec_presto_py dpa_u2i_rakten_two_tower_train_sample_d -e sn -k dt=`date -d '${azkaban.flow.start.timestamp} - 0 day' '+%Y-%m-%d'` -k dt_data=`date -d '${azkaban.flow.start.timestamp} - 6 day' '+%Y-%m-%d'`"
 dependencies=dpa_rakuten_user_item_session_d

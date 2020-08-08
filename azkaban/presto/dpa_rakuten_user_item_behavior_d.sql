@@ -67,4 +67,5 @@ SELECT ad_id,
     ts,
     dt
 FROM user_behavior
+where content_id not in ('', ' ')
 ;
