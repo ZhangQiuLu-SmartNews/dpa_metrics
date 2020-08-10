@@ -78,6 +78,7 @@ if __name__ == '__main__':
 
         def _parse_function(example_proto):
             keys_to_features = {
+                'ad_id': tf.io.VarLenFeature(tf.string),
                 'item_seq': tf.io.VarLenFeature(tf.int64),
                 'item_target': tf.io.VarLenFeature(tf.int64),
                 'label': tf.io.VarLenFeature(tf.int64)
@@ -92,6 +93,10 @@ if __name__ == '__main__':
         feature_dt = dataset.batch(10)
         # Create a one-shot iterator
         data = iter(feature_dt).get_next()
+        dense_ad_id = tf.sparse.to_dense(data['ad_id']).numpy()
+        for ad_id in dense_ad_id:
+            print(ad_id[0].decode('utf-8'))
+        exit()
         dense_data = tf.sparse.to_dense(data['item_seq'])
         dense_data2 = dense_data[:,:15]
 
