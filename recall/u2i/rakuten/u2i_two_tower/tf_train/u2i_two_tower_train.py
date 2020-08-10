@@ -30,13 +30,15 @@ if __name__ == '__main__':
             input = keras.Input(shape=(None,), name="user_seq")
             embedding = item_embedding(input)
             pooling = layers.GlobalAveragePooling1D()(embedding)
-            output = layers.Dense(64, activation=tf.nn.relu, kernel_initializer=tf.keras.initializers.GlorotNormal)(pooling)
+            output = layers.Dense(
+                64, activation=tf.nn.elu, kernel_initializer=tf.keras.initializers.GlorotNormal)(pooling)
             return input, output
 
         def item_tower_model():
             input = keras.Input(shape=(1,), name="item_input")
             embedding = item_embedding(input)
-            output = layers.Dense(64, activation=tf.nn.relu, kernel_initializer=tf.keras.initializers.GlorotNormal)(embedding)
+            output = layers.Dense(
+                64, activation=tf.nn.elu, kernel_initializer=tf.keras.initializers.GlorotNormal)(embedding)
             output = tf.reshape(output, [-1, 64])
             return input, output
 
@@ -88,13 +90,14 @@ if __name__ == '__main__':
     def test_step(model, input, labels, loss_metric, accuracy_metric):
         model_out = model(input)
         logits_sigmoid = model_out[0]
+        logits = model_out[1]
         labels_prob, logits_prob = convert_to_prob(labels, logits_sigmoid)
         loss = build_loss(labels_prob, logits_prob)
         #apply_metrics(labels_prob, logits_prob, loss, loss_metric, accuracy_metric)
         return logits, logits_sigmoid, loss
 
     def build_optimizer():
-        return tf.keras.optimizers.Adam(learning_rate=0.001)
+        return tf.keras.optimizers.Adam(learning_rate=0.0001)
 
     def _parse_function(example_proto):
         keys_to_features = {
@@ -126,7 +129,7 @@ if __name__ == '__main__':
             user_item_dict.update({ad_id: item})
         return user_item_dict
 
-    def train_negtive_sample(ad_id, postive_item_dict, item_range):
+    def negtive_sample(ad_id, postive_item_dict, item_range):
         # find ad_id in each row
         # extend row with 10x negtive sample
         item_negtive = []
@@ -142,6 +145,23 @@ if __name__ == '__main__':
                 rds = random.randrange(1, item_range + 1)
                 item_negtive.append([rds])
         return tf.convert_to_tensor(item_negtive)
+
+    def validate_performance(validation_ds, model, validation_auc_metric, validation_loss_metric, validation_accuracy_metric):
+        validation_batch = validation_ds.get_next()
+        ad_id = tf.sparse.to_dense(
+            validation_batch['ad_id']).numpy()
+        item_seq = tf.sparse.to_dense(validation_batch['item_seq'])
+        item_target = tf.sparse.to_dense(
+            validation_batch['item_target'])
+        labels = tf.sparse.to_dense(validation_batch['label'])
+        logits, logits_sigmoid, loss = test_step(model, [
+            item_seq, item_target], tf.ones_like(labels), validation_loss_metric, validation_accuracy_metric)
+        validation_auc_metric.update_state(
+            tf.ones_like(labels), logits_sigmoid)
+        print("val loss: ", loss)
+        print("val logits sigmoid: ", logits_sigmoid.numpy()[:10])
+        print("validation auc_metric: ",
+              validation_auc_metric.result().numpy())
 
     EPOCHS = 5
     train_loss_metric, train_accuracy_metric = build_metric()
@@ -181,45 +201,32 @@ if __name__ == '__main__':
                     # positive
                     pos_logits, pos_logits_sigmoid, loss = train_step(two_tower_model, [
                         item_seq, item_target], tf.ones_like(labels), optimizer, train_loss_metric, train_accuracy_metric)
-                    train_auc_metric.update_state(tf.ones_like(labels), pos_logits_sigmoid)
+                    train_auc_metric.update_state(
+                        tf.ones_like(labels), pos_logits_sigmoid)
                     # print("positive", logits_sigmoid.numpy())
 
                     # negative
-                    for neg_i in range(10):
-                        item_negative = train_negtive_sample(
+                    for neg_i in range(20):
+                        item_negative = negtive_sample(
                             ad_id, postive_item_dict, item_range)
                         neg_logits, neg_logits_sigmoid, loss = train_step(two_tower_model, [
                             item_seq, item_negative], tf.zeros_like(labels), optimizer, train_loss_metric, train_accuracy_metric)
-                        train_auc_metric.update_state(tf.zeros_like(labels), neg_logits_sigmoid)
+                        if neg_i == 0:
+                            train_auc_metric.update_state(
+                                tf.zeros_like(labels), neg_logits_sigmoid)
                         #print("negative", logits_sigmoid.numpy())
                     if i == 99:
-                        print("positive logits: ")
-                        print(pos_logits_sigmoid.numpy()[:10])
-                        print(pos_logits.numpy()[:10])
-                        print("negative logits: ")
-                        print(neg_logits_sigmoid.numpy()[:10])
-                        print(neg_logits.numpy()[:10])
+                        validate_performance(validation_ds, two_tower_model, validation_auc_metric,
+                                             validation_loss_metric, validation_accuracy_metric)
                     if i % 10 == 0:
-                        print("train auc_metric: ", train_auc_metric.result().numpy())
+                        print("train auc_metric: ",
+                              train_auc_metric.result().numpy())
             except tf.errors.OutOfRangeError:
                 break
         while True:
             try:
-                for i in range(100):
-                    validation_batch = validation_ds.get_next()
-                    ad_id = tf.sparse.to_dense(
-                        validation_batch['ad_id']).numpy()
-                    item_seq = tf.sparse.to_dense(validation_batch['item_seq'])
-                    item_target = tf.sparse.to_dense(
-                        validation_batch['item_target'])
-                    labels = tf.sparse.to_dense(validation_batch['label'])
-                    logits, logits_sigmoid, loss = test_step(two_tower_model, [
-                        item_seq, item_target], tf.ones_like(labels), validation_loss_metric, validation_accuracy_metric)
-                    validation_auc_metric.update_state(tf.ones_like(labels), logits_sigmoid)
-                    if i == 99:
-                        print("val loss: ", loss)
-                        print("val logits sigmoid: ", logits_sigmoid.numpy())
-                        print("validation auc_metric: ", validation_auc_metric.result().numpy())
+                validate_performance(validation_ds, two_tower_model, validation_auc_metric,
+                                     validation_loss_metric, validation_accuracy_metric)
             except tf.errors.OutOfRangeError:
                 break
         template = 'Epoch {}, Loss: {}, Accuracy: {}, Test Loss: {}, Test Accuracy: {}'
