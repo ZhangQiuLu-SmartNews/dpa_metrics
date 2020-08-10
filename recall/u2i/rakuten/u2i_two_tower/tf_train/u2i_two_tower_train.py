@@ -158,6 +158,14 @@ if __name__ == '__main__':
             item_seq, item_target], tf.ones_like(labels), validation_loss_metric, validation_accuracy_metric)
         validation_auc_metric.update_state(
             tf.ones_like(labels), logits_sigmoid)
+
+        item_negative = negtive_sample(
+            ad_id, postive_item_dict, item_range)
+        neg_logits, neg_logits_sigmoid, loss = test_step(model, [
+            item_seq, item_negative], tf.zeros_like(labels), validation_loss_metric, validation_accuracy_metric)
+        validation_auc_metric.update_state(
+            tf.zeros_like(labels), neg_logits_sigmoid)
+
         print("val loss: ", loss)
         print("val logits sigmoid: ", logits_sigmoid.numpy()[:10])
         print("validation auc_metric: ",
