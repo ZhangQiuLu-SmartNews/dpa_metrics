@@ -22,7 +22,11 @@ if __name__ == '__main__':
 
     def build_two_tower_model():
         def item_embedding_layer():
-            return layers.Embedding(input_dim=25000, output_dim=128, mask_zero=True, embeddings_initializer=tf.keras.initializers.GlorotNormal)
+            return layers.Embedding(input_dim=25000,
+                                    output_dim=256,
+                                    mask_zero=True,
+                                    embeddings_regularizer=tf.keras.regularizers.l1_l2(),
+                                    embeddings_initializer=tf.keras.initializers.GlorotNormal)
 
         item_embedding = item_embedding_layer()
 
@@ -31,15 +35,21 @@ if __name__ == '__main__':
             embedding = item_embedding(input)
             pooling = layers.GlobalAveragePooling1D()(embedding)
             output = layers.Dense(
-                64, activation=tf.nn.elu, kernel_initializer=tf.keras.initializers.GlorotNormal)(pooling)
+                128,
+                activation=tf.nn.elu,
+                kernel_regularizer=tf.keras.regularizers.l1_l2(),
+                kernel_initializer=tf.keras.initializers.GlorotNormal)(pooling)
             return input, output
 
         def item_tower_model():
             input = keras.Input(shape=(1,), name="item_input")
             embedding = item_embedding(input)
             output = layers.Dense(
-                64, activation=tf.nn.elu, kernel_initializer=tf.keras.initializers.GlorotNormal)(embedding)
-            output = tf.reshape(output, [-1, 64])
+                128,
+                activation=tf.nn.elu,
+                kernel_regularizer=tf.keras.regularizers.l1_l2(),
+                kernel_initializer=tf.keras.initializers.GlorotNormal)(embedding)
+            output = tf.reshape(output, [-1, 128])
             return input, output
 
         user_tower_input, user_tower_output = user_tower_model()
@@ -56,8 +66,10 @@ if __name__ == '__main__':
         )
 
     def convert_to_prob(labels, logits):
-        labels_prob = tf.concat([labels, 1 - labels], axis=1)
-        logits_prob = tf.concat([logits, 1 - logits], axis=1)
+        labels_prob = tf.concat(
+            [labels, tf.ones_like(labels) - labels], axis=1)
+        logits_prob = tf.concat(
+            [logits, tf.ones_like(logits) - logits], axis=1)
         return labels_prob, logits_prob
 
     def build_loss(labels_prob, logits_prob):
@@ -73,7 +85,7 @@ if __name__ == '__main__':
     def apply_metrics(labels_prob, logits_prob, loss_obj, loss_metric, accuracy_metric):
         return loss_metric(loss_obj), accuracy_metric(labels_prob, logits_prob)
 
-    @tf.function
+    @ tf.function
     def train_step(model, input, labels, optimizer, loss_metric, accuracy_metric):
         with tf.GradientTape() as tape:
             model_out = model(input)
@@ -81,23 +93,23 @@ if __name__ == '__main__':
             logits = model_out[1]
             labels_prob, logits_prob = convert_to_prob(labels, logits_sigmoid)
             loss = build_loss(labels_prob, logits_prob)
-            #apply_metrics(labels_prob, logits_prob, loss, loss_metric, accuracy_metric)
+            # apply_metrics(labels_prob, logits_prob, loss, loss_metric, accuracy_metric)
         gradients = tape.gradient(loss, model.trainable_variables)
         optimizer.apply_gradients(zip(gradients, model.trainable_variables))
         return logits, logits_sigmoid, loss
 
-    @tf.function
+    @ tf.function
     def test_step(model, input, labels, loss_metric, accuracy_metric):
         model_out = model(input)
         logits_sigmoid = model_out[0]
         logits = model_out[1]
         labels_prob, logits_prob = convert_to_prob(labels, logits_sigmoid)
         loss = build_loss(labels_prob, logits_prob)
-        #apply_metrics(labels_prob, logits_prob, loss, loss_metric, accuracy_metric)
+        # apply_metrics(labels_prob, logits_prob, loss, loss_metric, accuracy_metric)
         return logits, logits_sigmoid, loss
 
     def build_optimizer():
-        return tf.keras.optimizers.Adam(learning_rate=0.0001)
+        return tf.keras.optimizers.Adam(learning_rate=0.00001)
 
     def _parse_function(example_proto):
         keys_to_features = {
@@ -167,7 +179,8 @@ if __name__ == '__main__':
             tf.zeros_like(labels), neg_logits_sigmoid)
 
         print("val loss: ", loss)
-        print("val logits sigmoid: ", logits_sigmoid.numpy()[:10])
+        print("val logits sigmoid: ", np.concatenate(
+            (logits_sigmoid.numpy()[:100], neg_logits_sigmoid.numpy()[:100]), axis=1))
         print("validation auc_metric: ",
               validation_auc_metric.result().numpy())
 
@@ -181,10 +194,16 @@ if __name__ == '__main__':
 
     two_tower_model = build_two_tower_model()
 
-    train_ds = load_dataset(sys.argv[1], 50)
-    validation_ds = load_dataset(sys.argv[2], 200)
+    train_step_batch = 50
+    validation_step_batch = 200
+    negative_sample_iter = 10
+
+    train_ds = load_dataset(sys.argv[1], train_step_batch)
+    validation_ds = load_dataset(sys.argv[2], validation_step_batch)
     postive_item_dict = load_postive_item_dict(sys.argv[3])
     two_tower_model.summary()
+
+    global_step = tf.Variable(0, dtype=tf.int64)
 
     for epoch in range(EPOCHS):
         # Reset the metrics at the start of the next epoch
@@ -211,10 +230,10 @@ if __name__ == '__main__':
                         item_seq, item_target], tf.ones_like(labels), optimizer, train_loss_metric, train_accuracy_metric)
                     train_auc_metric.update_state(
                         tf.ones_like(labels), pos_logits_sigmoid)
-                    # print("positive", logits_sigmoid.numpy())
+                    global_step.assign_add(train_step_batch)
 
                     # negative
-                    for neg_i in range(20):
+                    for neg_i in range(negative_sample_iter):
                         item_negative = negtive_sample(
                             ad_id, postive_item_dict, item_range)
                         neg_logits, neg_logits_sigmoid, loss = train_step(two_tower_model, [
@@ -222,17 +241,25 @@ if __name__ == '__main__':
                         if neg_i == 0:
                             train_auc_metric.update_state(
                                 tf.zeros_like(labels), neg_logits_sigmoid)
-                        #print("negative", logits_sigmoid.numpy())
+                        global_step.assign_add(train_step_batch)
                     if i == 99:
+                        print("=" * 15)
+                        print("global step: {}, validation: ".format(
+                            global_step.numpy()))
                         validate_performance(validation_ds, two_tower_model, validation_auc_metric,
                                              validation_loss_metric, validation_accuracy_metric)
+                        print("=" * 15)
                     if i % 10 == 0:
-                        print("train auc_metric: ",
-                              train_auc_metric.result().numpy())
+                        print("global step: {}, train auc_metric: {}".format(
+                            global_step.numpy(), train_auc_metric.result().numpy()))
             except tf.errors.OutOfRangeError:
                 break
         while True:
             try:
+                print("Epoch {} , global step {} validation:".format(
+                    epoch, global_step.numpy()))
+                print("global step: {}, epoch validation: ".format(
+                    global_step.numpy()))
                 validate_performance(validation_ds, two_tower_model, validation_auc_metric,
                                      validation_loss_metric, validation_accuracy_metric)
             except tf.errors.OutOfRangeError:
