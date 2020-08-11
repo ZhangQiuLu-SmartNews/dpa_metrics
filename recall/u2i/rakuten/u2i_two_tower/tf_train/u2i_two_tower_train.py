@@ -183,7 +183,7 @@ if __name__ == '__main__':
         print("val loss: ", loss)
         print("val logits sigmoid: ", np.concatenate(
             (logits_sigmoid_array[:20], neg_logits_sigmoid_array[:20]), axis=1))
-        print("validation auc_metric: ".format(
+        print("validation auc_metric: {}".format(
             validation_auc_metric.result().numpy()))
         print("validation rank: positive sum: {}, negative sum: {}".format(
             np.mean(logits_sigmoid_array), np.mean(neg_logits_sigmoid_array)))
