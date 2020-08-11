@@ -194,24 +194,32 @@ if __name__ == '__main__':
         hr_10 = 0
         hr_20 = 0
         hr_50 = 0
-        for i in range(batch):
-            validation_hr_batch = validation_hr_ds.get_next()
-            item_seq = tf.sparse.to_dense(validation_hr_batch['item_seq'])
-            item_target = tf.sparse.to_dense(
-                validation_hr_batch['item_target'])
-            cancidate_item = [[i + 1] for i in range(item_range)]
-            item_seq_repeat = tf.repeat(item_seq, len(cancidate_item), axis=0)
-            cancidate_item = tf.convert_to_tensor(cancidate_item)
-            output = model([item_seq_repeat, cancidate_item])
-            ranked = np.argsort(np.reshape(output[0].numpy(), [1, -1]))[0]
-            ranked = ranked[::-1]
-            item_target = item_target.numpy()[0]
-            hr_1 += 1 if item_target == ranked[0] else 0
-            hr_5 += 1 if item_target in ranked[:5] else 0
-            hr_10 += 1 if item_target in ranked[:10] else 0
-            hr_20 += 1 if item_target in ranked[:20] else 0
-            hr_50 += 1 if item_target in ranked[:50] else 0
-        return "HR@N :\nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}, hr@50: {}".format(hr_1 / batch, hr_5 / batch, hr_10 / batch, hr_20 / batch, hr_50 / batch)
+        i = 0
+        try:
+            while True:
+                validation_hr_batch = validation_hr_ds.get_next()
+                item_seq = tf.sparse.to_dense(validation_hr_batch['item_seq'])
+                item_target = tf.sparse.to_dense(
+                    validation_hr_batch['item_target'])
+                cancidate_item = [[i + 1] for i in range(item_range)]
+                item_seq_repeat = tf.repeat(
+                    item_seq, len(cancidate_item), axis=0)
+                cancidate_item = tf.convert_to_tensor(cancidate_item)
+                output = model([item_seq_repeat, cancidate_item])
+                ranked = np.argsort(np.reshape(output[0].numpy(), [1, -1]))[0]
+                ranked = ranked[::-1]
+                item_target = item_target.numpy()[0]
+                hr_1 += 1 if item_target == ranked[0] else 0
+                hr_5 += 1 if item_target in ranked[:5] else 0
+                hr_10 += 1 if item_target in ranked[:10] else 0
+                hr_20 += 1 if item_target in ranked[:20] else 0
+                hr_50 += 1 if item_target in ranked[:50] else 0
+                i += 1
+                if batch > 0 and i == batch:
+                    break
+        except tf.errors.OutOfRangeError:
+            
+        return "HR@N record numbers: {} \nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}, hr@50: {}".format(i, hr_1 / i, hr_5 / i, hr_10 / i, hr_20 / i, hr_50 / i)
 
     EPOCHS = 5
     train_loss_metric, train_accuracy_metric = build_metric()
@@ -291,10 +299,9 @@ if __name__ == '__main__':
             try:
                 print("Epoch {} , global step {} validation:".format(
                     epoch, global_step.numpy()))
-                print("global step: {}, epoch validation: ".format(
-                    global_step.numpy()))
-                validate_performance(validation_ds, two_tower_model, validation_auc_metric,
-                                     validation_loss_metric, validation_accuracy_metric)
+                validation_hr = validation_hr_rate(
+                    validation_hr_ds, two_tower_model, 100)
+                print(validation_hr)
             except tf.errors.OutOfRangeError:
                 break
         template = 'Epoch {}, Loss: {}, Accuracy: {}, Test Loss: {}, Test Accuracy: {}'
