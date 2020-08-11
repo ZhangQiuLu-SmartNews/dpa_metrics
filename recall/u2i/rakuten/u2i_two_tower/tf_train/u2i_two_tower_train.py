@@ -184,6 +184,28 @@ if __name__ == '__main__':
         print("validation auc_metric: ",
               validation_auc_metric.result().numpy())
 
+    def validation_hr_rate(validation_hr_ds, model, batch):
+        hr_1 = 0
+        hr_5 = 0
+        hr_10 = 0
+        hr_20 = 0
+        for i in range(batch):
+            validation_hr_batch = validation_hr_ds.get_next()
+            item_seq = tf.sparse.to_dense(validation_hr_batch['item_seq'])
+            item_target = tf.sparse.to_dense(
+                validation_hr_batch['item_target'])
+            cancidate_item = [[i + 1] for i in range(item_range)]
+            item_seq_repeat = tf.repeat(item_seq, len(cancidate_item), axis=0)
+            cancidate_item = tf.convert_to_tensor(cancidate_item)
+            output = model([item_seq_repeat, cancidate_item])
+            ranked = np.argsort(np.reshape(output[0].numpy(), [1, -1]))[0]
+            item_target = item_target.numpy()[0]
+            hr_1 += 1 if item_target == ranked[0] else 0
+            hr_5 += 1 if item_target in ranked[:5] else 0
+            hr_10 += 1 if item_target in ranked[:10] else 0
+            hr_20 += 1 if item_target in ranked[:20] else 0
+        return "HR@N :\nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}".format(hr_1 / batch, hr_5 / batch, hr_10 / batch, hr_20 / batch)
+
     EPOCHS = 5
     train_loss_metric, train_accuracy_metric = build_metric()
     validation_loss_metric, validation_accuracy_metric = build_metric()
@@ -197,9 +219,12 @@ if __name__ == '__main__':
     train_step_batch = 50
     validation_step_batch = 200
     negative_sample_iter = 10
+    # candidate item count
+    item_range = 20000
 
     train_ds = load_dataset(sys.argv[1], train_step_batch)
     validation_ds = load_dataset(sys.argv[2], validation_step_batch)
+    validation_hr_ds = load_dataset(sys.argv[2], 1)
     postive_item_dict = load_postive_item_dict(sys.argv[3])
     two_tower_model.summary()
 
@@ -222,8 +247,6 @@ if __name__ == '__main__':
                     item_target = tf.sparse.to_dense(
                         train_batch['item_target'])
                     labels = tf.sparse.to_dense(train_batch['label'])
-
-                    item_range = 20000
 
                     # positive
                     pos_logits, pos_logits_sigmoid, loss = train_step(two_tower_model, [
@@ -248,6 +271,8 @@ if __name__ == '__main__':
                             global_step.numpy()))
                         validate_performance(validation_ds, two_tower_model, validation_auc_metric,
                                              validation_loss_metric, validation_accuracy_metric)
+                        validation_hr = validation_hr_rate(validation_hr_ds, two_tower_model, 100)
+                        print(validation_hr)
                         print("=" * 15)
                     if i % 10 == 0:
                         print("global step: {}, train auc_metric: {}".format(
