@@ -217,9 +217,8 @@ if __name__ == '__main__':
                 i += 1
                 if batch > 0 and i == batch:
                     break
-        except tf.errors.OutOfRangeError:
-            
-        return "HR@N record numbers: {} \nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}, hr@50: {}".format(i, hr_1 / i, hr_5 / i, hr_10 / i, hr_20 / i, hr_50 / i)
+        finally:
+            return "HR@N record numbers: {} \nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}, hr@50: {}".format(i, hr_1 / i, hr_5 / i, hr_10 / i, hr_20 / i, hr_50 / i)
 
     EPOCHS = 5
     train_loss_metric, train_accuracy_metric = build_metric()
@@ -299,8 +298,10 @@ if __name__ == '__main__':
             try:
                 print("Epoch {} , global step {} validation:".format(
                     epoch, global_step.numpy()))
+                validate_performance(validation_ds, two_tower_model, validation_auc_metric,
+                    validation_loss_metric, validation_accuracy_metric)
                 validation_hr = validation_hr_rate(
-                    validation_hr_ds, two_tower_model, 100)
+                    validation_hr_ds, two_tower_model, 0)
                 print(validation_hr)
             except tf.errors.OutOfRangeError:
                 break
