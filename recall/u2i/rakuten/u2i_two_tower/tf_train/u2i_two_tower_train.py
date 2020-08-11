@@ -178,11 +178,15 @@ if __name__ == '__main__':
         validation_auc_metric.update_state(
             tf.zeros_like(labels), neg_logits_sigmoid)
 
+        logits_sigmoid_array = logits_sigmoid.numpy()
+        neg_logits_sigmoid_array = neg_logits_sigmoid.numpy()
         print("val loss: ", loss)
         print("val logits sigmoid: ", np.concatenate(
-            (logits_sigmoid.numpy()[:100], neg_logits_sigmoid.numpy()[:100]), axis=1))
-        print("validation auc_metric: ",
-              validation_auc_metric.result().numpy())
+            (logits_sigmoid_array[:20], neg_logits_sigmoid_array[:20]), axis=1))
+        print("validation auc_metric: ".format(
+            validation_auc_metric.result().numpy()))
+        print("validation rank: positive sum: {}, negative sum: {}".format(
+            np.mean(logits_sigmoid_array), np.mean(neg_logits_sigmoid_array)))
 
     def validation_hr_rate(validation_hr_ds, model, batch):
         hr_1 = 0
@@ -271,7 +275,8 @@ if __name__ == '__main__':
                             global_step.numpy()))
                         validate_performance(validation_ds, two_tower_model, validation_auc_metric,
                                              validation_loss_metric, validation_accuracy_metric)
-                        validation_hr = validation_hr_rate(validation_hr_ds, two_tower_model, 100)
+                        validation_hr = validation_hr_rate(
+                            validation_hr_ds, two_tower_model, 100)
                         print(validation_hr)
                         print("=" * 15)
                     if i % 10 == 0:
