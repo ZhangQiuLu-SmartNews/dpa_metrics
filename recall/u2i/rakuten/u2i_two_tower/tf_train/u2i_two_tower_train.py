@@ -16,6 +16,7 @@ import numpy as np
 import pandas as pd
 import random
 import sys
+import gc
 
 
 if __name__ == '__main__':
@@ -123,7 +124,7 @@ if __name__ == '__main__':
         return logits, logits_sigmoid, loss
 
     def build_optimizer():
-        return tf.keras.optimizers.Adam(learning_rate=0.00001)
+        return tf.keras.optimizers.Adam(learning_rate=0.00002)
 
     def _parse_function(example_proto):
         keys_to_features = {
@@ -243,6 +244,7 @@ if __name__ == '__main__':
                 if batch > 0 and i == batch:
                     break
         finally:
+            gc.collect()
             return "HR@N record numbers: {} \nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}, hr@50: {},  hr@100: {}, hr@500: {}".format(i, hr_1 / i, hr_5 / i, hr_10 / i, hr_20 / i, hr_50 / i, hr_100 / i, hr_500 / i)
 
     EPOCHS = 5
