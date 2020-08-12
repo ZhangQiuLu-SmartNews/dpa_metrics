@@ -74,7 +74,7 @@ if __name__ == '__main__':
         dot_reduce = tf.reduce_sum(dot, axis=1, keepdims=True)
         dot_sigmoid = tf.math.sigmoid(dot_reduce)
         return keras.Model(
-            inputs= user_tower_input + item_tower_input,
+            inputs=user_tower_input + item_tower_input,
             outputs=[dot_sigmoid, dot_reduce,
                      user_tower_output, item_tower_output]
         )
@@ -191,12 +191,14 @@ if __name__ == '__main__':
 
     def validate_performance(validation_ds, model, validation_auc_metric, validation_loss_metric, validation_accuracy_metric):
         ad_id, nn_input, item_target, label = get_next_batch(validation_ds)
-        logits, logits_sigmoid, loss = test_step(model, [nn_input, item_target], tf.ones_like(label), validation_loss_metric, validation_accuracy_metric)
+        logits, logits_sigmoid, loss = test_step(model, [nn_input, item_target], tf.ones_like(
+            label), validation_loss_metric, validation_accuracy_metric)
         validation_auc_metric.update_state(
             tf.ones_like(label), logits_sigmoid)
         item_negative = negtive_sample(
             ad_id, postive_item_dict, item_range)
-        neg_logits, neg_logits_sigmoid, loss = test_step(model, [nn_input, item_negative], tf.zeros_like(label), validation_loss_metric, validation_accuracy_metric)
+        neg_logits, neg_logits_sigmoid, loss = test_step(model, [nn_input, item_negative], tf.zeros_like(
+            label), validation_loss_metric, validation_accuracy_metric)
         validation_auc_metric.update_state(
             tf.zeros_like(label), neg_logits_sigmoid)
 
@@ -214,10 +216,13 @@ if __name__ == '__main__':
         hr_10 = 0
         hr_20 = 0
         hr_50 = 0
+        hr_100 = 0
+        hr_500 = 0
         i = 0
         try:
             while True:
-                ad_id, nn_input, item_target, label = get_next_batch(validation_hr_ds)
+                ad_id, nn_input, item_target, label = get_next_batch(
+                    validation_hr_ds)
                 validation_hr_batch = validation_hr_ds.get_next()
                 cancidate_item = [[i + 1] for i in range(item_range)]
                 nn_input_repeat = [tf.repeat(
@@ -232,11 +237,13 @@ if __name__ == '__main__':
                 hr_10 += 1 if item_target in ranked[:10] else 0
                 hr_20 += 1 if item_target in ranked[:20] else 0
                 hr_50 += 1 if item_target in ranked[:50] else 0
+                hr_100 += 1 if item_target in ranked[:100] else 0
+                hr_500 += 1 if item_target in ranked[:500] else 0
                 i += 1
                 if batch > 0 and i == batch:
                     break
         finally:
-            return "HR@N record numbers: {} \nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}, hr@50: {}".format(i, hr_1 / i, hr_5 / i, hr_10 / i, hr_20 / i, hr_50 / i)
+            return "HR@N record numbers: {} \nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}, hr@50: {},  hr@100: {}, hr@500: {}".format(i, hr_1 / i, hr_5 / i, hr_10 / i, hr_20 / i, hr_50 / i, hr_100 / i, hr_500 / i)
 
     EPOCHS = 5
     train_loss_metric, train_accuracy_metric = build_metric()
@@ -274,7 +281,8 @@ if __name__ == '__main__':
             try:
                 for i in range(100):
                     train_batch = train_ds.get_next()
-                    ad_id, nn_input, item_target, label = get_next_batch(train_ds)
+                    ad_id, nn_input, item_target, label = get_next_batch(
+                        train_ds)
 
                     # positive
                     pos_logits, pos_logits_sigmoid, loss = train_step(two_tower_model, [nn_input, item_target], tf.ones_like(
