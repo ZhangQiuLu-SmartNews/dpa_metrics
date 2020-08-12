@@ -9,11 +9,11 @@ from tensorflow.keras import layers
 
 def read_csv_file(file_name):
     return pd.read_csv(file_name, sep='\001',
-                       names='ad_id,item_nos,behavior_types,item_target,label'.split(','))
+                       names='ad_id,item_seq,behavior_seq,item_car,item_purchase,item_category,item_target,label'.split(','))
 
 
 def feature_preprocess(feature_df):
-    featue_column = 'ad_id,item_nos,behavior_types,item_target,label'.split(',')
+    featue_column = feature_config().keys()
     return feature_df[featue_column]
 
 
@@ -50,6 +50,10 @@ def feature_config():
     feature_conf_write = {
         'ad_id': _bytes_feature,
         'item_seq': _int64_list_feature,
+        'behavior_seq': _int64_list_feature,
+        'item_car': _int64_list_feature,
+        'item_purchase': _int64_list_feature,
+        'item_category': _int64_list_feature,
         'item_target': _int64_feature,
         'label': _int64_feature
     }
@@ -59,8 +63,27 @@ def feature_config():
 def feature_extracton(feature_df):
     feature_conf = feature_config()
     feature_df['ad_id'] = feature_df['ad_id'].str.encode('utf-8')
-    feature_df['item_seq'] = feature_df['item_nos'].str.split(
-        ',').apply(lambda val_array: [int(val) for val in val_array])
+
+    feature_df['item_seq'].replace('\\N', '', inplace=True)
+    feature_df['item_seq'] = feature_df['item_seq'].str.split(
+        ',').apply(lambda val_array: [int(val) for val in val_array] if val_array[0] != '' else [])
+
+    feature_df['behavior_seq'].replace('\\N', '', inplace=True)
+    feature_df['behavior_seq'] = feature_df['behavior_seq'].str.split(
+        ',').apply(lambda val_array: [int(val) for val in val_array] if val_array[0] != '' else [])
+
+    feature_df['item_car'].replace('\\N', '', inplace=True)
+    feature_df['item_car'] = feature_df['item_car'].str.split(
+        ',').apply(lambda val_array: [int(val) for val in val_array] if val_array[0] != '' else [])
+
+    feature_df['item_purchase'].replace('\\N', '', inplace=True)
+    feature_df['item_purchase'] = feature_df['item_purchase'].str.split(
+        ',').apply(lambda val_array: [int(val) for val in val_array] if val_array[0] != '' else [])
+
+    feature_df['item_category'].replace('\\N', '', inplace=True)
+    feature_df['item_category'] = feature_df['item_category'].str.split(
+        ',').apply(lambda val_array: [int(val) for val in val_array] if val_array[0] != '' else [])
+
     return feature_df[feature_conf.keys()]
 
 
@@ -80,6 +103,10 @@ if __name__ == '__main__':
             keys_to_features = {
                 'ad_id': tf.io.VarLenFeature(tf.string),
                 'item_seq': tf.io.VarLenFeature(tf.int64),
+                'behavior_seq': tf.io.VarLenFeature(tf.int64),
+                'item_car': tf.io.VarLenFeature(tf.int64),
+                'item_purchase': tf.io.VarLenFeature(tf.int64),
+                'item_category': tf.io.VarLenFeature(tf.int64),
                 'item_target': tf.io.VarLenFeature(tf.int64),
                 'label': tf.io.VarLenFeature(tf.int64)
             }
@@ -94,21 +121,19 @@ if __name__ == '__main__':
         # Create a one-shot iterator
         data = iter(feature_dt).get_next()
         dense_ad_id = tf.sparse.to_dense(data['ad_id']).numpy()
-        for ad_id in dense_ad_id:
-            print(ad_id[0].decode('utf-8'))
-        exit()
-        dense_data = tf.sparse.to_dense(data['item_seq'])
-        dense_data2 = dense_data[:,:15]
+
+        dense_data = tf.sparse.to_dense(data['item_car'])
 
         inputs = keras.Input(shape=(None,), dtype="int32")
-        x = layers.Embedding(input_dim=20000, output_dim=16, mask_zero=True)(inputs)
+        x = layers.Embedding(input_dim=24000, output_dim=10,
+                             mask_zero=True)(inputs)
+        x = tf.where(tf.math.is_nan(x), tf.zeros_like(x), x)
         outputs = layers.GlobalAveragePooling1D()(x)
         model = keras.Model(
             inputs=inputs,
             outputs=outputs
         )
         print(model(dense_data))
-        print(model(dense_data2))
 
     elif len(sys.argv) == 3:
         csv_file = sys.argv[1]

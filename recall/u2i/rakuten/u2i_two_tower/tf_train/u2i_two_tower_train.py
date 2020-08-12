@@ -31,15 +31,29 @@ if __name__ == '__main__':
         item_embedding = item_embedding_layer()
 
         def user_tower_model():
-            input = keras.Input(shape=(None,), name="user_seq")
-            embedding = item_embedding(input)
-            pooling = layers.GlobalAveragePooling1D()(embedding)
+            item_seq_input = keras.Input(shape=(None,), name="item_seq")
+            embedding = item_embedding(item_seq_input)
+            item_seq_pooling = layers.GlobalAveragePooling1D()(embedding)
+
+            item_car_input = keras.Input(shape=(None,), name="item_car")
+            embedding = item_embedding(item_car_input)
+            item_car_pooling = layers.GlobalAveragePooling1D()(embedding)
+
+            item_purchase_input = keras.Input(
+                shape=(None,), name="item_purchase")
+            embedding = item_embedding(item_purchase_input)
+            item_purchase_pooling = layers.GlobalAveragePooling1D()(embedding)
+
+            concate_pooling = tf.concat(
+                [item_seq_pooling, item_car_pooling, item_purchase_pooling], axis=1)
+            concate_pooling = tf.where(tf.math.is_nan(concate_pooling), tf.zeros_like(
+                concate_pooling), concate_pooling)
             output = layers.Dense(
                 128,
                 activation=tf.nn.elu,
                 kernel_regularizer=tf.keras.regularizers.l1_l2(),
-                kernel_initializer=tf.keras.initializers.GlorotNormal)(pooling)
-            return input, output
+                kernel_initializer=tf.keras.initializers.GlorotNormal)(concate_pooling)
+            return [item_seq_input, item_car_input, item_purchase_input], output
 
         def item_tower_model():
             input = keras.Input(shape=(1,), name="item_input")
@@ -50,7 +64,7 @@ if __name__ == '__main__':
                 kernel_regularizer=tf.keras.regularizers.l1_l2(),
                 kernel_initializer=tf.keras.initializers.GlorotNormal)(embedding)
             output = tf.reshape(output, [-1, 128])
-            return input, output
+            return [input], output
 
         user_tower_input, user_tower_output = user_tower_model()
         item_tower_input, item_tower_output = item_tower_model()
@@ -60,7 +74,7 @@ if __name__ == '__main__':
         dot_reduce = tf.reduce_sum(dot, axis=1, keepdims=True)
         dot_sigmoid = tf.math.sigmoid(dot_reduce)
         return keras.Model(
-            inputs=[user_tower_input, item_tower_input],
+            inputs= user_tower_input + item_tower_input,
             outputs=[dot_sigmoid, dot_reduce,
                      user_tower_output, item_tower_output]
         )
@@ -115,12 +129,29 @@ if __name__ == '__main__':
         keys_to_features = {
             'ad_id': tf.io.VarLenFeature(tf.string),
             'item_seq': tf.io.VarLenFeature(tf.int64),
+            'behavior_seq': tf.io.VarLenFeature(tf.int64),
+            'item_car': tf.io.VarLenFeature(tf.int64),
+            'item_purchase': tf.io.VarLenFeature(tf.int64),
+            'item_category': tf.io.VarLenFeature(tf.int64),
             'item_target': tf.io.VarLenFeature(tf.int64),
             'label': tf.io.VarLenFeature(tf.int64)
         }
         parsed_features = tf.io.parse_single_example(
             example_proto, keys_to_features)
         return parsed_features
+
+    def get_next_batch(dataset):
+        dataset_batch = dataset.get_next()
+        ad_id = tf.sparse.to_dense(
+            dataset_batch['ad_id']).numpy()
+        item_seq = tf.sparse.to_dense(dataset_batch['item_seq'])
+        item_car = tf.sparse.to_dense(dataset_batch['item_car'])
+        item_purchase = tf.sparse.to_dense(dataset_batch['item_purchase'])
+        item_target = tf.sparse.to_dense(
+            dataset_batch['item_target'])
+        label = tf.sparse.to_dense(dataset_batch['label'])
+        nn_input = [item_seq, item_car, item_purchase, item_target]
+        return ad_id, nn_input, item_target, label
 
     def load_dataset(file_pattern, batch_size=100):
         file_name = tf.io.gfile.glob(file_pattern)
@@ -159,24 +190,15 @@ if __name__ == '__main__':
         return tf.convert_to_tensor(item_negtive)
 
     def validate_performance(validation_ds, model, validation_auc_metric, validation_loss_metric, validation_accuracy_metric):
-        validation_batch = validation_ds.get_next()
-        ad_id = tf.sparse.to_dense(
-            validation_batch['ad_id']).numpy()
-        item_seq = tf.sparse.to_dense(validation_batch['item_seq'])
-        item_target = tf.sparse.to_dense(
-            validation_batch['item_target'])
-        labels = tf.sparse.to_dense(validation_batch['label'])
-        logits, logits_sigmoid, loss = test_step(model, [
-            item_seq, item_target], tf.ones_like(labels), validation_loss_metric, validation_accuracy_metric)
+        ad_id, nn_input, item_target, label = get_next_batch(validation_ds)
+        logits, logits_sigmoid, loss = test_step(model, [nn_input, item_target], tf.ones_like(label), validation_loss_metric, validation_accuracy_metric)
         validation_auc_metric.update_state(
-            tf.ones_like(labels), logits_sigmoid)
-
+            tf.ones_like(label), logits_sigmoid)
         item_negative = negtive_sample(
             ad_id, postive_item_dict, item_range)
-        neg_logits, neg_logits_sigmoid, loss = test_step(model, [
-            item_seq, item_negative], tf.zeros_like(labels), validation_loss_metric, validation_accuracy_metric)
+        neg_logits, neg_logits_sigmoid, loss = test_step(model, [nn_input, item_negative], tf.zeros_like(label), validation_loss_metric, validation_accuracy_metric)
         validation_auc_metric.update_state(
-            tf.zeros_like(labels), neg_logits_sigmoid)
+            tf.zeros_like(label), neg_logits_sigmoid)
 
         logits_sigmoid_array = logits_sigmoid.numpy()
         neg_logits_sigmoid_array = neg_logits_sigmoid.numpy()
@@ -197,15 +219,13 @@ if __name__ == '__main__':
         i = 0
         try:
             while True:
+                ad_id, nn_input, item_target, label = get_next_batch(validation_hr_ds)
                 validation_hr_batch = validation_hr_ds.get_next()
-                item_seq = tf.sparse.to_dense(validation_hr_batch['item_seq'])
-                item_target = tf.sparse.to_dense(
-                    validation_hr_batch['item_target'])
                 cancidate_item = [[i + 1] for i in range(item_range)]
-                item_seq_repeat = tf.repeat(
-                    item_seq, len(cancidate_item), axis=0)
+                nn_input_repeat = tf.repeat(
+                    nn_input, len(cancidate_item), axis=0)
                 cancidate_item = tf.convert_to_tensor(cancidate_item)
-                output = model([item_seq_repeat, cancidate_item])
+                output = model([nn_input_repeat, cancidate_item])
                 ranked = np.argsort(np.reshape(output[0].numpy(), [1, -1]))[0]
                 ranked = ranked[::-1]
                 item_target = item_target.numpy()[0]
@@ -256,50 +276,50 @@ if __name__ == '__main__':
             try:
                 for i in range(100):
                     train_batch = train_ds.get_next()
-                    ad_id = tf.sparse.to_dense(train_batch['ad_id']).numpy()
-                    item_seq = tf.sparse.to_dense(train_batch['item_seq'])
-                    item_target = tf.sparse.to_dense(
-                        train_batch['item_target'])
-                    labels = tf.sparse.to_dense(train_batch['label'])
+                    ad_id, nn_input, item_target, label = get_next_batch(train_ds)
 
                     # positive
-                    pos_logits, pos_logits_sigmoid, loss = train_step(two_tower_model, [
-                        item_seq, item_target], tf.ones_like(labels), optimizer, train_loss_metric, train_accuracy_metric)
+                    pos_logits, pos_logits_sigmoid, loss = train_step(two_tower_model, [nn_input, item_target], tf.ones_like(
+                        label), optimizer, train_loss_metric, train_accuracy_metric)
                     train_auc_metric.update_state(
-                        tf.ones_like(labels), pos_logits_sigmoid)
+                        tf.ones_like(label), pos_logits_sigmoid)
                     global_step.assign_add(train_step_batch)
 
                     # negative
                     for neg_i in range(negative_sample_iter):
                         item_negative = negtive_sample(
                             ad_id, postive_item_dict, item_range)
-                        neg_logits, neg_logits_sigmoid, loss = train_step(two_tower_model, [
-                            item_seq, item_negative], tf.zeros_like(labels), optimizer, train_loss_metric, train_accuracy_metric)
+                        neg_logits, neg_logits_sigmoid, loss = train_step(two_tower_model, [nn_input, item_negative], tf.zeros_like(
+                            label), optimizer, train_loss_metric, train_accuracy_metric)
                         if neg_i == 0:
                             train_auc_metric.update_state(
-                                tf.zeros_like(labels), neg_logits_sigmoid)
+                                tf.zeros_like(label), neg_logits_sigmoid)
                         global_step.assign_add(train_step_batch)
+
+                    global_step_num = global_step.numpy()
                     if i == 99:
                         print("=" * 15)
                         print("global step: {}, validation: ".format(
-                            global_step.numpy()))
+                            global_step_num))
                         validate_performance(validation_ds, two_tower_model, validation_auc_metric,
                                              validation_loss_metric, validation_accuracy_metric)
                         validation_hr = validation_hr_rate(
                             validation_hr_ds, two_tower_model, 100)
-                        print(validation_hr)
+                        print("global step: {}, {}".format(
+                            global_step_num, validation_hr))
                         print("=" * 15)
                     if i % 10 == 0:
                         print("global step: {}, train auc_metric: {}".format(
-                            global_step.numpy(), train_auc_metric.result().numpy()))
+                            global_step_num, train_auc_metric.result().numpy()))
             except tf.errors.OutOfRangeError:
                 break
         while True:
             try:
+                global_step_num = global_step.numpy()
                 print("Epoch {} , global step {} validation:".format(
-                    epoch, global_step.numpy()))
+                    epoch, global_step_num))
                 validate_performance(validation_ds, two_tower_model, validation_auc_metric,
-                    validation_loss_metric, validation_accuracy_metric)
+                                     validation_loss_metric, validation_accuracy_metric)
                 validation_hr = validation_hr_rate(
                     validation_hr_ds, two_tower_model, 0)
                 print(validation_hr)
