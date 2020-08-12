@@ -8,7 +8,7 @@ from tensorflow.keras import layers
 
 
 def read_csv_file(file_name):
-    return pd.read_csv(file_name, sep='\001',
+    return pd.read_csv(file_name, sep='\001', chunksize=500000,
                        names='ad_id,item_seq,behavior_seq,item_car,item_purchase,item_category,item_target,label'.split(','))
 
 
@@ -139,7 +139,10 @@ if __name__ == '__main__':
         csv_file = sys.argv[1]
         tfrecord_file = sys.argv[2]
 
-        feature_df = read_csv_file(csv_file)
-        feature_df = feature_preprocess(feature_df)
-        feature_df = feature_extracton(feature_df)
-        generate_tfrecord(feature_df, tfrecord_file)
+        file_index = 0
+
+        for feature_df in read_csv_file(csv_file):
+            feature_df = feature_preprocess(feature_df)
+            feature_df = feature_extracton(feature_df)
+            generate_tfrecord(feature_df, "{}.{}".format(tfrecord_file, file_index))
+            file_index += 1

@@ -150,7 +150,7 @@ if __name__ == '__main__':
         item_target = tf.sparse.to_dense(
             dataset_batch['item_target'])
         label = tf.sparse.to_dense(dataset_batch['label'])
-        nn_input = [item_seq, item_car, item_purchase, item_target]
+        nn_input = [item_seq, item_car, item_purchase]
         return ad_id, nn_input, item_target, label
 
     def load_dataset(file_pattern, batch_size=100):
@@ -203,8 +203,6 @@ if __name__ == '__main__':
         logits_sigmoid_array = logits_sigmoid.numpy()
         neg_logits_sigmoid_array = neg_logits_sigmoid.numpy()
         print("val loss: ", loss)
-        print("val logits sigmoid: ", np.concatenate(
-            (logits_sigmoid_array[:20], neg_logits_sigmoid_array[:20]), axis=1))
         print("validation auc_metric: {}".format(
             validation_auc_metric.result().numpy()))
         print("validation rank: positive sum: {}, negative sum: {}".format(
@@ -222,8 +220,8 @@ if __name__ == '__main__':
                 ad_id, nn_input, item_target, label = get_next_batch(validation_hr_ds)
                 validation_hr_batch = validation_hr_ds.get_next()
                 cancidate_item = [[i + 1] for i in range(item_range)]
-                nn_input_repeat = tf.repeat(
-                    nn_input, len(cancidate_item), axis=0)
+                nn_input_repeat = [tf.repeat(
+                    _input, len(cancidate_item), axis=0) for _input in nn_input]
                 cancidate_item = tf.convert_to_tensor(cancidate_item)
                 output = model([nn_input_repeat, cancidate_item])
                 ranked = np.argsort(np.reshape(output[0].numpy(), [1, -1]))[0]
