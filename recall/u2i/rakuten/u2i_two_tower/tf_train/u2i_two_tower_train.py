@@ -290,8 +290,7 @@ if __name__ == '__main__':
                     # positive
                     pos_logits, pos_logits_sigmoid, loss = train_step(two_tower_model, [nn_input, item_target], tf.ones_like(
                         label), optimizer)
-                    print(two_tower_model.layers[3].get_weights())
-                    exit()
+                        
                     train_auc_metric.update_state(
                         tf.ones_like(label), pos_logits_sigmoid)
                     global_step.assign_add(train_step_batch)
