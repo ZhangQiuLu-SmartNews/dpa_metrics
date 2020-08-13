@@ -25,7 +25,7 @@ if __name__ == '__main__':
         def item_embedding_layer():
             return layers.Embedding(input_dim=25000,
                                     output_dim=256,
-                                    mask_zero=True,
+                                    mask_zero=False,
                                     embeddings_regularizer=tf.keras.regularizers.l1_l2(),
                                     embeddings_initializer=tf.keras.initializers.GlorotNormal)
 
@@ -51,7 +51,7 @@ if __name__ == '__main__':
                 concate_pooling), concate_pooling)
             output = layers.Dense(
                 128,
-                activation=tf.nn.elu,
+                activation=tf.nn.tanh,
                 kernel_regularizer=tf.keras.regularizers.l1_l2(),
                 kernel_initializer=tf.keras.initializers.GlorotNormal)(concate_pooling)
             return [item_seq_input, item_car_input, item_purchase_input], output
@@ -61,7 +61,7 @@ if __name__ == '__main__':
             embedding = item_embedding(input)
             output = layers.Dense(
                 128,
-                activation=tf.nn.elu,
+                activation=tf.nn.tanh,
                 kernel_regularizer=tf.keras.regularizers.l1_l2(),
                 kernel_initializer=tf.keras.initializers.GlorotNormal)(embedding)
             output = tf.reshape(output, [-1, 128])
@@ -101,7 +101,7 @@ if __name__ == '__main__':
         return loss_metric(loss_obj), accuracy_metric(labels_prob, logits_prob)
 
     @ tf.function
-    def train_step(model, input, labels, optimizer, loss_metric, accuracy_metric):
+    def train_step(model, input, labels, optimizer):
         with tf.GradientTape() as tape:
             model_out = model(input)
             logits_sigmoid = model_out[0]
@@ -114,7 +114,7 @@ if __name__ == '__main__':
         return logits, logits_sigmoid, loss
 
     @ tf.function
-    def test_step(model, input, labels, loss_metric, accuracy_metric):
+    def test_step(model, input, labels):
         model_out = model(input)
         logits_sigmoid = model_out[0]
         logits = model_out[1]
@@ -190,16 +190,16 @@ if __name__ == '__main__':
                 item_negtive.append([rds])
         return tf.convert_to_tensor(item_negtive)
 
-    def validate_performance(validation_ds, model, validation_auc_metric, validation_loss_metric, validation_accuracy_metric):
+    def validate_performance(validation_ds, model, validation_auc_metric):
         ad_id, nn_input, item_target, label = get_next_batch(validation_ds)
         logits, logits_sigmoid, loss = test_step(model, [nn_input, item_target], tf.ones_like(
-            label), validation_loss_metric, validation_accuracy_metric)
+            label))
         validation_auc_metric.update_state(
             tf.ones_like(label), logits_sigmoid)
         item_negative = negtive_sample(
             ad_id, postive_item_dict, item_range)
         neg_logits, neg_logits_sigmoid, loss = test_step(model, [nn_input, item_negative], tf.zeros_like(
-            label), validation_loss_metric, validation_accuracy_metric)
+            label))
         validation_auc_metric.update_state(
             tf.zeros_like(label), neg_logits_sigmoid)
 
@@ -248,8 +248,6 @@ if __name__ == '__main__':
             return "HR@N record numbers: {} \nhr@1: {} , hr@5: {}, hr@10: {}, hr@20: {}, hr@50: {},  hr@100: {}, hr@500: {}".format(i, hr_1 / i, hr_5 / i, hr_10 / i, hr_20 / i, hr_50 / i, hr_100 / i, hr_500 / i)
 
     EPOCHS = 5
-    train_loss_metric, train_accuracy_metric = build_metric()
-    validation_loss_metric, validation_accuracy_metric = build_metric()
     train_auc_metric = tf.keras.metrics.AUC(num_thresholds=200)
     validation_auc_metric = tf.keras.metrics.AUC(num_thresholds=200)
 
@@ -257,7 +255,7 @@ if __name__ == '__main__':
 
     two_tower_model = build_two_tower_model()
 
-    train_step_batch = 50
+    train_step_batch = 20
     validation_step_batch = 200
     negative_sample_iter = 10
     # candidate item count
@@ -270,25 +268,30 @@ if __name__ == '__main__':
     two_tower_model.summary()
 
     global_step = tf.Variable(0, dtype=tf.int64)
+    ckpt = tf.train.Checkpoint(step=global_step, optimizer=optimizer, net=two_tower_model, iterator=train_ds)
+    manager = tf.train.CheckpointManager(ckpt, './tf_ckpts', max_to_keep=3)
+    ckpt.restore(manager.latest_checkpoint)
+    if manager.latest_checkpoint:
+      print("Restored from {}".format(manager.latest_checkpoint))
+    else:
+      print("Initializing from scratch.")
 
     for epoch in range(EPOCHS):
         # Reset the metrics at the start of the next epoch
-        train_loss_metric.reset_states()
-        train_accuracy_metric.reset_states()
-        validation_loss_metric.reset_states()
-        validation_accuracy_metric.reset_states()
         train_auc_metric.reset_states()
         validation_auc_metric.reset_states()
         while True:
             try:
-                for i in range(100):
+                for i in range(200):
                     train_batch = train_ds.get_next()
                     ad_id, nn_input, item_target, label = get_next_batch(
                         train_ds)
 
                     # positive
                     pos_logits, pos_logits_sigmoid, loss = train_step(two_tower_model, [nn_input, item_target], tf.ones_like(
-                        label), optimizer, train_loss_metric, train_accuracy_metric)
+                        label), optimizer)
+                    print(two_tower_model.layers[3].get_weights())
+                    exit()
                     train_auc_metric.update_state(
                         tf.ones_like(label), pos_logits_sigmoid)
                     global_step.assign_add(train_step_batch)
@@ -298,25 +301,26 @@ if __name__ == '__main__':
                         item_negative = negtive_sample(
                             ad_id, postive_item_dict, item_range)
                         neg_logits, neg_logits_sigmoid, loss = train_step(two_tower_model, [nn_input, item_negative], tf.zeros_like(
-                            label), optimizer, train_loss_metric, train_accuracy_metric)
+                            label), optimizer)
                         if neg_i == 0:
                             train_auc_metric.update_state(
                                 tf.zeros_like(label), neg_logits_sigmoid)
                         global_step.assign_add(train_step_batch)
 
                     global_step_num = global_step.numpy()
-                    if i == 99:
+                    if i == 0:
+                        save_path = manager.save()
                         print("=" * 15)
                         print("global step: {}, validation: ".format(
                             global_step_num))
-                        validate_performance(validation_ds, two_tower_model, validation_auc_metric,
-                                             validation_loss_metric, validation_accuracy_metric)
+                        validate_performance(
+                            validation_ds, two_tower_model, validation_auc_metric)
                         validation_hr = validation_hr_rate(
                             validation_hr_ds, two_tower_model, 100)
                         print("global step: {}, {}".format(
                             global_step_num, validation_hr))
                         print("=" * 15)
-                    if i % 10 == 0:
+                    if i % 20 == 0:
                         print("global step: {}, train auc_metric: {}".format(
                             global_step_num, train_auc_metric.result().numpy()))
             except tf.errors.OutOfRangeError:
@@ -326,16 +330,12 @@ if __name__ == '__main__':
                 global_step_num = global_step.numpy()
                 print("Epoch {} , global step {} validation:".format(
                     epoch, global_step_num))
-                validate_performance(validation_ds, two_tower_model, validation_auc_metric,
-                                     validation_loss_metric, validation_accuracy_metric)
+                validate_performance(
+                    validation_ds, two_tower_model, validation_auc_metric)
                 validation_hr = validation_hr_rate(
                     validation_hr_ds, two_tower_model, 0)
                 print(validation_hr)
             except tf.errors.OutOfRangeError:
                 break
-        template = 'Epoch {}, Loss: {}, Accuracy: {}, Test Loss: {}, Test Accuracy: {}'
-        print(template.format(epoch + 1,
-                              train_loss_metric.result(),
-                              train_accuracy_metric.result(),
-                              validation_loss_metric.result(),
-                              validation_accuracy_metric.result()))
+        template = 'Epoch {}, AUC: {}'
+        print(template.format(epoch + 1,train_accuracy_metric.result()))
