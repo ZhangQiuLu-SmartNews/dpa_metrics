@@ -87,6 +87,34 @@ def feature_extracton(feature_df):
     return feature_df[feature_conf.keys()]
 
 
+def feature_extracton_unique(feature_df):
+    feature_conf = feature_config()
+    feature_df['ad_id'] = feature_df['ad_id'].str.encode('utf-8')
+
+    feature_df['item_seq'].replace('\\N', '', inplace=True)
+    feature_df['item_seq'] = feature_df['item_seq'].str.split(
+        ',').apply(lambda val_array: np.unique([int(val) for val in val_array]) if val_array[0] != '' else [])
+
+    feature_df['behavior_seq'].replace('\\N', '', inplace=True)
+    feature_df['behavior_seq'] = feature_df['behavior_seq'].str.split(
+        ',').apply(lambda val_array: np.unique([int(val) for val in val_array]) if val_array[0] != '' else [])
+
+    feature_df['item_car'].replace('\\N', '', inplace=True)
+    feature_df['item_car'] = feature_df['item_car'].str.split(
+        ',').apply(lambda val_array: np.unique([int(val) for val in val_array]) if val_array[0] != '' else [])
+
+    feature_df['item_purchase'].replace('\\N', '', inplace=True)
+    feature_df['item_purchase'] = feature_df['item_purchase'].str.split(
+        ',').apply(lambda val_array: np.unique([int(val) for val in val_array]) if val_array[0] != '' else [])
+
+    feature_df['item_category'].replace('\\N', '', inplace=True)
+    feature_df['item_category'] = feature_df['item_category'].str.split(
+        ',').apply(lambda val_array: np.unique([int(val) for val in val_array]) if val_array[0] != '' else [])
+
+    feature_df = feature_df[feature_df['item_seq'].map(len) > 5]
+
+    return feature_df[feature_conf.keys()]
+
 def generate_tfrecord(feature_df, tfrecord_file):
     feature_conf = feature_config()
     writer = tf.io.TFRecordWriter(tfrecord_file)
@@ -143,6 +171,6 @@ if __name__ == '__main__':
 
         for feature_df in read_csv_file(csv_file):
             feature_df = feature_preprocess(feature_df)
-            feature_df = feature_extracton(feature_df)
+            feature_df = feature_extracton_unique(feature_df)
             generate_tfrecord(feature_df, "{}.{}".format(tfrecord_file, file_index))
             file_index += 1
