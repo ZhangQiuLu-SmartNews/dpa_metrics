@@ -22,23 +22,31 @@ from implicit.nearest_neighbours import (BM25Recommender, CosineRecommender,
 log = logging.getLogger("implicit")
 
 
-
 def read_user_item_data(file_name):
     return pd.read_csv(file_name, sep='\001', names='ad_id,item_id,user_index,item_index,score'.split(','))
+
 
 def get_user_item_sparse_data_csv(user_item_df):
     unique_user = np.sort(np.unique(user_item_df['user_id']))
     unique_item = np.sort(np.unique(user_item_df['item_id']))
-    unique_user_df = pd.DataFrame({'user_index': [i for i in range(len(unique_user))], 'user_id': unique_user})
-    unique_item_df = pd.DataFrame({'item_index': [i for i in range(len(unique_item))], 'item_id': unique_item})
-    user_item_df = user_item_df.join(unique_item_df.set_index('item_id'), on='item_id')
-    user_item_df = user_item_df.join(unique_user_df.set_index('user_id'), on='user_id')
+    unique_user_df = pd.DataFrame(
+        {'user_index': [i for i in range(len(unique_user))], 'user_id': unique_user})
+    unique_item_df = pd.DataFrame(
+        {'item_index': [i for i in range(len(unique_item))], 'item_id': unique_item})
+    user_item_df = user_item_df.join(
+        unique_item_df.set_index('item_id'), on='item_id')
+    user_item_df = user_item_df.join(
+        unique_user_df.set_index('user_id'), on='user_id')
     return unique_user, unique_item, user_item_df
 
+
 def get_user_item_sparse_data_presto(user_item_df):
-    unique_user = np.sort(np.unique(user_item_df['user_index']))
-    unique_item = np.sort(np.unique(user_item_df['item_index']))
+    user_item_df['user_index'] -= 1
+    user_item_df['item_index'] -= 1
+    unique_user = user_item_df[['user_index', 'user_id']].drop_duplicates().sort_values(by=['user_index'])['user_id']
+    unique_item = user_item_df[['item_index', 'item_id']].drop_duplicates().sort_values(by=['item_index'])['item_id']
     return unique_user, unique_item, user_item_df[['user_index', 'item_index', 'score']]
+
 
 def calculate_similar_movies(input_filename,
                              output_filename,
@@ -50,10 +58,12 @@ def calculate_similar_movies(input_filename,
 
     user_item_df = read_user_item_data(input_filename)
     print(user_item_df)
-    unique_user, unique_item, user_item_df = get_user_item_sparse_data_presto(user_item_df)
-    
+    unique_user, unique_item, user_item_df = get_user_item_sparse_data_presto(
+        user_item_df)
+
     #user_item_df = user_item_df.sort_values(by=['user_index','item_index'])
-    user_item_ratings = scipy.sparse.csr_matrix((user_item_df['score'], (user_item_df['item_index'], user_item_df['user_index'])))
+    user_item_ratings = scipy.sparse.csr_matrix(
+        (user_item_df['score'], (user_item_df['item_index'], user_item_df['user_index'])))
     print(user_item_ratings)
     '''
     # remove things < min_rating, and convert to implicit dataset
@@ -63,13 +73,12 @@ def calculate_similar_movies(input_filename,
     ratings.data = np.ones(len(ratings.data))
     '''
 
-
     log.info("read data file in %s", time.time() - start)
 
     # generate a recommender model based off the input params
     if model_name == "als":
         model = AlternatingLeastSquares(
-            factors=10, iterations=1, calculate_training_loss=True)
+            factors=10, regularization=0.01, use_native=True, iterations=1, calculate_training_loss=True)
 
         # lets weight these models by bm25weight.
         log.debug("weighting matrix by bm25_weight")
@@ -101,7 +110,8 @@ def calculate_similar_movies(input_filename,
     log.debug("calculating top movies")
 
     user_count = np.ediff1d(user_item_ratings.indptr)
-    to_generate = sorted(np.arange(len(unique_item)), key=lambda x: -user_count[x])
+    to_generate = sorted(np.arange(len(unique_item)),
+                         key=lambda x: -user_count[x])
 
     log.debug("calculating similar movies")
 
@@ -113,7 +123,8 @@ def calculate_similar_movies(input_filename,
                 if user_item_ratings.indptr[movieid] != user_item_ratings.indptr[movieid + 1]:
                     title = unique_item[movieid]
                     for other, score in model.similar_items(movieid, 11):
-                        o.write("%s\t%s\t%s\n" % (title, unique_item[other], score))
+                        o.write("%s\t%s\t%s\n" %
+                                (title, unique_item[other], score))
                 progress.update(1)
 
 
