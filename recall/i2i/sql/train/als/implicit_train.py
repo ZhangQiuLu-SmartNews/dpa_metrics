@@ -50,7 +50,7 @@ def get_user_item_sparse_data_presto(user_item_df):
     return unique_user, unique_item, user_item_df[['user_index', 'item_index', 'score']]
 
 
-def similar_to_csv(model, k, user_item_ratings, unique_item):
+def similar_to_csv(model, k, user_item_ratings, unique_item, iterations = 1000):
     similar_df = pd.DataFrame(data={'item_id': unique_item['item_id'], 'item_index': unique_item['item_index']})
 
     def get_topk(_item, _k):
@@ -65,7 +65,6 @@ def similar_to_csv(model, k, user_item_ratings, unique_item):
                 similar_arary.append('{}={}'.format(unique_item['item_id'].values[candidate], score / first_dot))
         return similar_arary
 
-    iterations = 1000
     i = 0
     while i * iterations < len(similar_df):
         similar_df_slice = similar_df.iloc[i * iterations: (i + 1) * iterations]
@@ -135,10 +134,14 @@ def calculate_similar_movies(input_filename,
     log.debug("trained model '%s' in %s", model_name, time.time() - start)
     log.debug("calculating top movies")
 
-    similar_df_gen = similar_to_csv(model, 10, user_item_ratings, unique_item)
+    k=10
+    iterations = 10000
+    similar_df_gen = similar_to_csv(model, k, user_item_ratings, unique_item, iterations)
+
+    with tqdm.tqdm(total=len(unique_item) // iterations + 1) as progress:
     for similar_df_slice in similar_df_gen:
         similar_df_slice.to_csv(args.outputfile, mode='a', header=False, index=False)
-
+        progress.update(1)
 
     '''
     user_count = np.ediff1d(user_item_ratings.indptr)
