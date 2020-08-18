@@ -137,7 +137,7 @@ def calculate_similar_movies(input_filename,
 
     similar_df_gen = similar_to_csv(model, 10, user_item_ratings, unique_item)
     for similar_df_slice in similar_df_gen:
-        print(similar_df_slice)
+        similar_df_slice.to_csv(args.outputfile, model='a', header=False, index=False)
 
 
     '''
