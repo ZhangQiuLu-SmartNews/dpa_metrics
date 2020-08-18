@@ -132,7 +132,7 @@ def calculate_similar_movies(input_filename,
     log.debug("calculating top movies")
 
     similar_df_gen = similar_to_csv(model, 11, user_item_ratings, unique_item)
-    for similar_df_slice in similar_df_gen():
+    for similar_df_slice in similar_df_gen:
         print(similar_df_slice)
 
 
