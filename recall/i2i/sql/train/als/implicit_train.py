@@ -58,7 +58,7 @@ def similar_to_csv(model, k, user_item_ratings, unique_item):
         if user_item_ratings.indptr[_item] != user_item_ratings.indptr[_item + 1]:
             candidate_score = model.similar_items(_item, k)
             for candidate, score in candidate_score:
-                similar_arary.append('{}={}'.format(unique_item['item_id'][candidate], score))
+                similar_arary.append('{}={}'.format(unique_item['item_id'].values[candidate], score))
         return similar_arary
 
     iterations = 1000
