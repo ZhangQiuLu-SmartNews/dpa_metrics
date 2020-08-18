@@ -43,9 +43,24 @@ def get_user_item_sparse_data_csv(user_item_df):
 def get_user_item_sparse_data_presto(user_item_df):
     user_item_df['user_index'] -= 1
     user_item_df['item_index'] -= 1
-    unique_user = user_item_df[['user_index', 'user_id']].drop_duplicates().sort_values(by=['user_index'])['user_id']
-    unique_item = user_item_df[['item_index', 'item_id']].drop_duplicates().sort_values(by=['item_index'])['item_id']
+    unique_user = user_item_df[['user_index', 'ad_id']].drop_duplicates().sort_values(by=['user_index'])
+    unique_item = user_item_df[['item_index', 'item_id']].drop_duplicates().sort_values(by=['item_index'])
     return unique_user, unique_item, user_item_df[['user_index', 'item_index', 'score']]
+
+
+def similar_to_csv(model, k, user_item_ratings, unique_item):
+    similar_df = pd.DataFrame(data={'item_id': unique_item['item_id'], 'item_index': unique_item['item_index']})
+
+    def get_topk(_item, _k):
+        similar_arary = []
+        if user_item_ratings.indptr[_item] != user_item_ratings.indptr[_item + 1]:
+            candidate_score = model.similar_items(_item, k)
+            for candidate, score in candidate_score:
+                similar_arary.append('{}={}'.format(unique_item['item_id'][candidate], score))
+        return similar_arary
+
+    similar_df['topk'] = similar_df['item_index'].apply(lambda _item_index: get_topk(_item_index, k))
+    return similar_df
 
 
 def calculate_similar_movies(input_filename,
@@ -109,6 +124,10 @@ def calculate_similar_movies(input_filename,
     log.debug("trained model '%s' in %s", model_name, time.time() - start)
     log.debug("calculating top movies")
 
+    similar_df = similar_to_csv(model, 11, user_item_ratings, unique_item)
+    print(similar_df)
+
+    '''
     user_count = np.ediff1d(user_item_ratings.indptr)
     to_generate = sorted(np.arange(len(unique_item)),
                          key=lambda x: -user_count[x])
@@ -117,16 +136,16 @@ def calculate_similar_movies(input_filename,
 
     with tqdm.tqdm(total=len(to_generate)) as progress:
         with codecs.open(output_filename, "w", "utf8") as o:
-            for movieid in to_generate:
+            for item_id in to_generate:
                 # if this movie has no ratings, skip over (for instance 'Graffiti Bridge' has
                 # no ratings > 4 meaning we've filtered out all data for it.
-                if user_item_ratings.indptr[movieid] != user_item_ratings.indptr[movieid + 1]:
-                    title = unique_item[movieid]
-                    for other, score in model.similar_items(movieid, 11):
+                if user_item_ratings.indptr[item_id] != user_item_ratings.indptr[item_id + 1]:
+                    title = unique_item[item_id]
+                    for other, score in model.similar_items(item_id, 11):
                         o.write("%s\t%s\t%s\n" %
                                 (title, unique_item[other], score))
                 progress.update(1)
-
+    '''
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generates related movies from the MovieLens 20M "
