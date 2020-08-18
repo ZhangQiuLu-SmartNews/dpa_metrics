@@ -58,7 +58,7 @@ def similar_to_csv(model, k, user_item_ratings, unique_item):
         if user_item_ratings.indptr[_item] != user_item_ratings.indptr[_item + 1]:
             candidate_score = model.similar_items(_item, k + 1)
             first_dot = 1
-            for index, candidate, score in enumerate(candidate_score):
+            for index, (candidate, score) in enumerate(candidate_score):
                 if index == 0:
                     first_dot = score
                     continue
