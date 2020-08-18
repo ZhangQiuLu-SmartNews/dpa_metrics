@@ -56,9 +56,13 @@ def similar_to_csv(model, k, user_item_ratings, unique_item):
     def get_topk(_item, _k):
         similar_arary = []
         if user_item_ratings.indptr[_item] != user_item_ratings.indptr[_item + 1]:
-            candidate_score = model.similar_items(_item, k)
-            for candidate, score in candidate_score:
-                similar_arary.append('{}={}'.format(unique_item['item_id'].values[candidate], score))
+            candidate_score = model.similar_items(_item, k + 1)
+            first_dot = 1
+            for index, candidate, score in enumerate(candidate_score):
+                if index == 0:
+                    first_dot = score
+                    continue
+                similar_arary.append('{}={}'.format(unique_item['item_id'].values[candidate], score / first_dot))
         return similar_arary
 
     iterations = 1000
@@ -131,7 +135,7 @@ def calculate_similar_movies(input_filename,
     log.debug("trained model '%s' in %s", model_name, time.time() - start)
     log.debug("calculating top movies")
 
-    similar_df_gen = similar_to_csv(model, 11, user_item_ratings, unique_item)
+    similar_df_gen = similar_to_csv(model, 10, user_item_ratings, unique_item)
     for similar_df_slice in similar_df_gen:
         print(similar_df_slice)
 
