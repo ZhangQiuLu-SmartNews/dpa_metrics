@@ -45,6 +45,8 @@ def get_user_item_sparse_data_presto(user_item_df):
     user_item_df['item_index'] -= 1
     unique_user = user_item_df[['user_index', 'ad_id']].drop_duplicates().sort_values(by=['user_index'])
     unique_item = user_item_df[['item_index', 'item_id']].drop_duplicates().sort_values(by=['item_index'])
+    assert(np.max(unique_item['item_index']) + 1 == len(unique_item['item_index']))
+    assert(np.max(unique_user['user_index']) + 1 == len(unique_user['user_index']))
     return unique_user, unique_item, user_item_df[['user_index', 'item_index', 'score']]
 
 
@@ -59,8 +61,13 @@ def similar_to_csv(model, k, user_item_ratings, unique_item):
                 similar_arary.append('{}={}'.format(unique_item['item_id'][candidate], score))
         return similar_arary
 
-    similar_df['topk'] = similar_df['item_index'].apply(lambda _item_index: get_topk(_item_index, k))
-    return similar_df
+    iterations = 1000
+    i = 0
+    while i * iterations < len(similar_df):
+        similar_df_slice = similar_df.iloc[i * iterations: (i + 1) * iterations]
+        similar_df_slice['topk'] = similar_df_slice['item_index'].apply(lambda _item_index: get_topk(_item_index, k))
+        i += 1
+        yield similar_df_slice
 
 
 def calculate_similar_movies(input_filename,
@@ -124,8 +131,10 @@ def calculate_similar_movies(input_filename,
     log.debug("trained model '%s' in %s", model_name, time.time() - start)
     log.debug("calculating top movies")
 
-    similar_df = similar_to_csv(model, 11, user_item_ratings, unique_item)
-    print(similar_df)
+    similar_df_gen = similar_to_csv(model, 11, user_item_ratings, unique_item)
+    for similar_df_slice in similar_df_gen():
+        print(similar_df_slice)
+
 
     '''
     user_count = np.ediff1d(user_item_ratings.indptr)
