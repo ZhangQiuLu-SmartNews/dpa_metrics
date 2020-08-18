@@ -139,9 +139,9 @@ def calculate_similar_movies(input_filename,
     similar_df_gen = similar_to_csv(model, k, user_item_ratings, unique_item, iterations)
 
     with tqdm.tqdm(total=len(unique_item) // iterations + 1) as progress:
-    for similar_df_slice in similar_df_gen:
-        similar_df_slice.to_csv(args.outputfile, mode='a', header=False, index=False)
-        progress.update(1)
+        for similar_df_slice in similar_df_gen:
+            similar_df_slice.to_csv(args.outputfile, mode='a', header=False, index=False)
+            progress.update(1)
 
     '''
     user_count = np.ediff1d(user_item_ratings.indptr)
