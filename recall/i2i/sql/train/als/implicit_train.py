@@ -54,22 +54,30 @@ def get_user_item_sparse_data_presto(user_item_df):
 
 def similar_to_csv(model, k, user_item_ratings, unique_item, iterations = 1000):
     similar_df = pd.DataFrame(data={'item_id': unique_item['item_id'], 'item_index': unique_item['item_index']})
+    
+    def calc_cosine(model, batch_items, N):
+        batch_factors = model.item_factors[batch_items]
+        batch_norms = model.item_norms[batch_items]
+        scores = batch_factors.dot(model.item_factors.T) / model.item_norms / np.reshape(batch_norms, [-1, 1])
+        best = np.argpartition(scores, -N)[-N:]
+        score = [_all[_b] for _all, _b in zip(scores, best)]
+        index = np.argsort(score, axis=1)[:,::-1]
+        score_sorted = [_s[_i] for _s, _i in zip(score, index)]
+        best_sorted = [_b[_i] for _b, _i in zip(best, index)]
 
-    def get_topk(_item, _k):
-        similar_arary = []
-        if user_item_ratings.indptr[_item] != user_item_ratings.indptr[_item + 1]:
-            candidate_score = model.similar_items(_item, k)
-            first_dot = 1
-            for index, (candidate, score) in enumerate(candidate_score):
-                if index == 0:
-                    first_dot = score
-                similar_arary.append('{}={}'.format(unique_item['item_id'].values[candidate], score / first_dot))
-        return similar_arary
+        return best_sorted, score_sorted
 
     i = 0
     while i * iterations < len(similar_df):
         similar_df_slice = similar_df.iloc[i * iterations: (i + 1) * iterations]
-        similar_df_slice['topk'] = similar_df_slice['item_index'].apply(lambda _item_index: get_topk(_item_index, k))
+        topks = []
+        batch_best_candidate, batch_best_score = calc_cosine(model, similar_df_slice['item_index'].values(), K)
+        for candidates, scores in zip(batch_best_candidate, batch_best_score):
+            similar_arary = []
+            for c, s in zip(candidates, scores):
+                similar_arary.append('{}={}'.format(unique_item['item_id'].values[c], s))
+            topks.append(similar_arary)
+        similar_df_slice['topk'] = topks
         i += 1
         yield similar_df_slice
 
