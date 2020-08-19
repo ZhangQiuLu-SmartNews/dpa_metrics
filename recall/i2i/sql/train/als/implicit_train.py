@@ -43,6 +43,8 @@ def get_user_item_sparse_data_csv(user_item_df):
 def get_user_item_sparse_data_presto(user_item_df):
     user_item_df['user_index'] -= 1
     user_item_df['item_index'] -= 1
+    user_item_df['score'] *= 100
+    user_item_df['score'] += 1
     unique_user = user_item_df[['user_index', 'ad_id']].drop_duplicates().sort_values(by=['user_index'])
     unique_item = user_item_df[['item_index', 'item_id']].drop_duplicates().sort_values(by=['item_index'])
     assert(np.max(unique_item['item_index']) + 1 == len(unique_item['item_index']))
@@ -56,12 +58,11 @@ def similar_to_csv(model, k, user_item_ratings, unique_item, iterations = 1000):
     def get_topk(_item, _k):
         similar_arary = []
         if user_item_ratings.indptr[_item] != user_item_ratings.indptr[_item + 1]:
-            candidate_score = model.similar_items(_item, k + 1)
+            candidate_score = model.similar_items(_item, k)
             first_dot = 1
             for index, (candidate, score) in enumerate(candidate_score):
                 if index == 0:
                     first_dot = score
-                    continue
                 similar_arary.append('{}={}'.format(unique_item['item_id'].values[candidate], score / first_dot))
         return similar_arary
 
@@ -103,7 +104,7 @@ def calculate_similar_movies(input_filename,
     # generate a recommender model based off the input params
     if model_name == "als":
         model = AlternatingLeastSquares(
-            factors=10, regularization=0.01, use_native=True, iterations=1, calculate_training_loss=True)
+            factors=128, regularization=0.01, use_native=True, iterations=20, calculate_training_loss=True)
 
         # lets weight these models by bm25weight.
         log.debug("weighting matrix by bm25_weight")
