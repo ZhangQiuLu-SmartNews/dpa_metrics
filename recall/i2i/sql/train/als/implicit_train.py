@@ -145,7 +145,7 @@ def calculate_similar_movies(input_filename,
 
     k=10
     iterations = 10000
-    similar_df_gen = similar_to_csv(model, k, user_item_ratings, unique_item, iterations)
+    similar_df_gen = similar_to_csv(model, k, unique_item, iterations)
 
     with tqdm.tqdm(total=len(unique_item) // iterations + 1) as progress:
         for similar_df_slice in similar_df_gen:
