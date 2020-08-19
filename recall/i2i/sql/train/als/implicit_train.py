@@ -52,9 +52,9 @@ def get_user_item_sparse_data_presto(user_item_df):
     return unique_user, unique_item, user_item_df[['user_index', 'item_index', 'score']]
 
 
-def similar_to_csv(model, k, user_item_ratings, unique_item, iterations = 1000):
+def similar_to_csv(model, k, unique_item, iterations = 1000):
     similar_df = pd.DataFrame(data={'item_id': unique_item['item_id'], 'item_index': unique_item['item_index']})
-    
+
     def calc_cosine(model, batch_items, N):
         batch_factors = model.item_factors[batch_items]
         batch_norms = model.item_norms[batch_items]
@@ -71,7 +71,7 @@ def similar_to_csv(model, k, user_item_ratings, unique_item, iterations = 1000):
     while i * iterations < len(similar_df):
         similar_df_slice = similar_df.iloc[i * iterations: (i + 1) * iterations]
         topks = []
-        batch_best_candidate, batch_best_score = calc_cosine(model, similar_df_slice['item_index'].values(), K)
+        batch_best_candidate, batch_best_score = calc_cosine(model, similar_df_slice['item_index'].values(), k)
         for candidates, scores in zip(batch_best_candidate, batch_best_score):
             similar_arary = []
             for c, s in zip(candidates, scores):
@@ -150,6 +150,7 @@ def calculate_similar_movies(input_filename,
     with tqdm.tqdm(total=len(unique_item) // iterations + 1) as progress:
         for similar_df_slice in similar_df_gen:
             similar_df_slice.to_csv(args.outputfile, mode='a', header=False, index=False)
+            print("finsih a batch")
             progress.update(1)
 
     '''
