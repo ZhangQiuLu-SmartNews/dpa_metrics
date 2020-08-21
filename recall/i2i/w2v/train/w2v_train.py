@@ -40,6 +40,7 @@ if __name__ == "__main__":
     parser.add_argument('--input', type=str, default='', dest='inputfile')
     parser.add_argument('--output', type=str, default='', dest='outputfile')
     parser.add_argument('--topk', type=int, default=10, dest='k')
+    parser.add_argument('--save_one_time', type=int, default=2000, dest='save_one_time')
     args = parser.parse_args()
 
     main(args)
