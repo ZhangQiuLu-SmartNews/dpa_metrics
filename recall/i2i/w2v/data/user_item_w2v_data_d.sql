@@ -1,8 +1,9 @@
+delete from z_seanchuang.i2i_offline_w2v_train_data where dt='2020-08-01-10day';
 insert into z_seanchuang.i2i_offline_w2v_train_data
 with data as (
     select
         ad_id,
-        replace(regexp_replace(content_id, '^([0-9]+):([0-9a-zA-Z\-_]+):([0-9]+)$', '$2:$3'), ' ') as content_id,
+        regexp_replace(replace(content_id, ' '), '^([0-9]+):([0-9a-zA-Z\-_]+):([0-9]+)$', '$2:$3') as content_id,
         ts
     from (
         select
