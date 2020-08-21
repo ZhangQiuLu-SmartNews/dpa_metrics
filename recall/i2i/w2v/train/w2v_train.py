@@ -9,6 +9,7 @@ def get_similarity(model, args):
         for word in model.words:
             similarity[word] = ['{}={}'.format(cscore, cword) for cscore, cword in model.get_nearest_neighbors(word, k=args.k)]
             progress.update(1)
+    return similarity
 
 def main(args):
     model = train_unsupervised(
