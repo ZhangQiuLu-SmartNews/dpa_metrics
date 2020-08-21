@@ -15,7 +15,7 @@ def get_similarity(model, args):
 
 
 def save_csv(similarity, args):
-    topk_df = pd.DataFrame({'item': np.sort(similarity.keys())})
+    topk_df = pd.DataFrame({'item': np.sort(list(similarity.keys()))})
     with tqdm.tqdm(desc='save_csv', total=len(similarity.keys()) // args.save_one_time) as progress:
         for i in range(len(similarity.keys()), step=args.save_one_time):
             topk_df['topk'] = topk_df.iloc[i: i+args.save_one_time]['item'].str.apply(lambda x: similarity[x])
@@ -30,7 +30,7 @@ def main(args):
     )
 
     similarity_dict = get_similarity(model, args)
-    print(similarity_dict)
+    save_csv(similarity_dict, args)
 
 
 if __name__ == "__main__":
