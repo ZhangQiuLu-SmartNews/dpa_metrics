@@ -21,7 +21,7 @@ def get_similarity(model, args):
     i = 0
     chunk_i = 0
     with tqdm.tqdm(desc="get_similarity", total=len(model.wv.vectors)) as progress:
-        for word in model.wv.vocab:
+        for word in np.sort(list(model.wv.vocab.keys())):
             item.append(word)
             similarity.append(['{}={}'.format(cscore, cword) for cscore, cword in model.wv.most_similar(word, topn=args.k, indexer=indexer)])
             i += 1
@@ -88,7 +88,7 @@ if __name__ == "__main__":
     parser.add_argument('--output', type=str, default='gensim_output.csv', dest='output_file')
     parser.add_argument('--top_k', type=int, default=10, dest='k')
     parser.add_argument('--chunk_size', type=int, default=1000000, dest='chunk_size')
-    parser.add_argument('--save_one_time', type=int, default=2000, dest='save_one_time')
+    parser.add_argument('--save_one_time', type=int, default=200000, dest='save_one_time')
     parser.add_argument('--train', type=bool, default=False, dest='train')
     args = parser.parse_args()
     print(args)
