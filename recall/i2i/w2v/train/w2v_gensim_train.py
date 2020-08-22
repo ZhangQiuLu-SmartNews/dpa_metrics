@@ -18,10 +18,10 @@ def get_similarity(model, args):
     indexer = AnnoyIndexer(model, 10)
     i = 0
     chunk_i = 0
+    item = []
+    similarity = []
     with tqdm.tqdm(desc="get_similarity", total=len(model.wv.vectors)) as progress:
         for word in np.sort(list(model.wv.vocab.keys())):
-            item = []
-            similarity = []
             item.append(word)
             similarity.append(['{}={}'.format(cscore, cword) for cscore, cword in model.wv.most_similar(word, topn=args.k, indexer=indexer)])
             i += 1
@@ -31,6 +31,8 @@ def get_similarity(model, args):
                 topk_df.to_csv(args.output_file, mode='a', header=False, index=False)
                 i = 0
                 chunk_i += 1
+                item = []
+                similarity = []
             progress.update(1)
         if i > 0:
             print("save to csv chunk no: {}".format(chunk_i))
