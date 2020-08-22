@@ -66,12 +66,14 @@ def main(args):
 
     #model = gensim.models.Word2Vec(corpus_file=args.input_file, iter=5, window=10, alpha=0.001, min_alpha=0.0001, sg=1, hs=1, compute_loss=True, workers=25, callbacks=[callback(args)])
     if args.train:
+        print("load train file: {}".format(args.input_file))
         model = train_unsupervised(
             input=args.input_file,
             model='skipgram',
         )
         model.save_model(args.model_file)
     else:
+        print("load model: {}".format(args.model_file))
         model= gensim.models.fasttext.load_facebook_model(args.model_file)
     get_similarity(model, args)
     #ave_csv(similarity, args)
@@ -89,5 +91,5 @@ if __name__ == "__main__":
     parser.add_argument('--save_one_time', type=int, default=2000, dest='save_one_time')
     parser.add_argument('--train', type=bool, default=False, dest='train')
     args = parser.parse_args()
-
+    print(args)
     main(args)
