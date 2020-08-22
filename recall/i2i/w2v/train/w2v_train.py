@@ -25,20 +25,19 @@ def save_csv(similarity, args):
 
 def main(args):
     model = train_unsupervised(
-        input=args.inputfile,
+        input=args.input_file,
         model='skipgram',
     )
 
-    similarity_dict = get_similarity(model, args)
-    save_csv(similarity_dict, args)
-
+    model.save_model(args.model_file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="fuck i2i",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('--input', type=str, default='', dest='inputfile')
-    parser.add_argument('--output', type=str, default='', dest='outputfile')
+    parser.add_argument('--input', type=str, default='', dest='input_file')
+    parser.add_argument('--model_output', type=str, default='gensim_w2v.model.vec', dest='model_file')
+    parser.add_argument('--output', type=str, default='', dest='output_file')
     parser.add_argument('--topk', type=int, default=10, dest='k')
     parser.add_argument('--save_one_time', type=int, default=2000, dest='save_one_time')
     args = parser.parse_args()

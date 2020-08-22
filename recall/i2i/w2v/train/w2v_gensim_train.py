@@ -16,11 +16,26 @@ def item_session(file_name, chunk_size):
 
 def get_similarity(model, args):
     indexer = AnnoyIndexer(model, 10)
-    similarity = {}
+    similarity = []
+    item = []
+    i = 0
+    chunk_i = 0
     with tqdm.tqdm(desc="get_similarity", total=len(model.wv.vectors)) as progress:
         for word in model.wv.vocab:
-            similarity[word] = ['{}={}'.format(cscore, cword) for cscore, cword in model.wv.most_similar(word, topn=args.k, indexer=indexer)]
+            item.append(word)
+            similarity.append(['{}={}'.format(cscore, cword) for cscore, cword in model.wv.most_similar(word, topn=args.k, indexer=indexer)])
+            i += 1
+            if i % args.save_one_time == 0:
+                print("save to csv chunk no: {}".format(chunk_i))
+                topk_df = pd.DataFrame({'item': item, 'topk': similarity})
+                topk_df.to_csv(args.output_file, mode='a', header=False, index=False)
+                i = 0
+                chunk_i += 1
             progress.update(1)
+        if i > 0:
+            print("save to csv chunk no: {}".format(chunk_i))
+            topk_df = pd.DataFrame({'item': item, 'topk': similarity})
+            topk_df.to_csv(args.output_file, mode='a', header=False, index=False)
     return similarity
 
 
@@ -50,14 +65,16 @@ class callback(CallbackAny2Vec):
 def main(args):
 
     #model = gensim.models.Word2Vec(corpus_file=args.input_file, iter=5, window=10, alpha=0.001, min_alpha=0.0001, sg=1, hs=1, compute_loss=True, workers=25, callbacks=[callback(args)])
-    model = train_unsupervised(
-        input=args.input_file,
-        model='skipgram',
-    )
-    model.save_model(args.model_file)
-    model= gensim.models.fasttext.load_facebook_model(args.model_file)
-    similarity = get_similarity(model, args)
-    save_csv(similarity, args)
+    if args.train:
+        model = train_unsupervised(
+            input=args.input_file,
+            model='skipgram',
+        )
+        model.save_model(args.model_file)
+    else:
+        model= gensim.models.fasttext.load_facebook_model(args.model_file)
+    get_similarity(model, args)
+    #ave_csv(similarity, args)
 
 
 if __name__ == "__main__":
@@ -70,6 +87,7 @@ if __name__ == "__main__":
     parser.add_argument('--top_k', type=int, default=10, dest='k')
     parser.add_argument('--chunk_size', type=int, default=1000000, dest='chunk_size')
     parser.add_argument('--save_one_time', type=int, default=2000, dest='save_one_time')
+    parser.add_argument('--train', type=bool, default=False, dest='train')
     args = parser.parse_args()
 
     main(args)
