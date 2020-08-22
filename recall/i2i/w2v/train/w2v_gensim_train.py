@@ -16,12 +16,12 @@ def item_session(file_name, chunk_size):
 
 def get_similarity(model, args):
     indexer = AnnoyIndexer(model, 10)
-    similarity = []
-    item = []
     i = 0
     chunk_i = 0
     with tqdm.tqdm(desc="get_similarity", total=len(model.wv.vectors)) as progress:
         for word in np.sort(list(model.wv.vocab.keys())):
+            item = []
+            similarity = []
             item.append(word)
             similarity.append(['{}={}'.format(cscore, cword) for cscore, cword in model.wv.most_similar(word, topn=args.k, indexer=indexer)])
             i += 1
