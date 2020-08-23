@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS z_yukimura.cluster_user_item_behavior;
 CREATE TABLE IF NOT EXISTS z_yukimura.cluster_user_item_behavior (
     ad_id VARCHAR,
-    item_seq ARRAY<VARCHAR>,
-    category_seq ARRAY<VARCHAR>,
+    item_seq VARCHAR,
+    category_seq VARCHAR,
     dt VARCHAR
 ) WITH (
     format = 'TextFile',
@@ -39,8 +39,8 @@ with data as (
 user_behavior as (
     select
         ad_id,
-        array_agg(content_id order by ts) as item_seq,
-        array_agg(categoru_id order by ts) as category_seq,
+        array_join(array_agg(content_id order by ts), ',') as item_seq,
+        array_join(array_agg(categoru_id order by ts), ',') as category_seq,
         '2020-08-01' as dt
     from data
     where ad_id not in ('',
