@@ -38,7 +38,7 @@ def fill_cluster_vec(item_category_df, item_category_map):
 
 def main(args):
     user_item_behavior_df, cluster_vec = read_user_item_behavior(args.user_item_file, args.item_category_file)
-    kmeans = KMeans(n_clusters=5, random_state=0).fit(cluster_vec)
+    kmeans = KMeans(n_clusters=args.cluser_num, random_state=0).fit(cluster_vec)
     counter = Counter(kmeans.labels_)
     print(counter)
     labels = [label for label in kmeans.labels_]
@@ -51,6 +51,7 @@ if __name__ == '__main__':
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--user_item', type=str, default='', dest='user_item_file')
     parser.add_argument('--item_category', type=str, default='', dest='item_category_file')
+    parser.add_argument('--cluser_num', type=int, default=5, dest='cluser_num')
     parser.add_argument('--output', type=str, default='user_item_behavior_df.csv', dest='output_file')
     args = parser.parse_args()
     print(args)
