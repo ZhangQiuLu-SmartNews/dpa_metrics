@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import argparse
 from collections import Counter
+import tqdm
 
 
 def read_user_item_behavior(args, user_item_file, item_category_file):
@@ -32,8 +33,10 @@ def fill_cluster_vec(item_category_df, item_category_map):
     # item_category_df['cluster_vec'] = item_category_df.category_seq.apply(lambda seq: build_vec(str(seq), item_category_map))
 
     vecs = []
-    for i, cate_seq in enumerate(item_category_df['category_seq'].values):
-        vecs.append(build_vec(str(cate_seq).split(','), item_category_map))
+    with tqdm.tqdm(total=len(item_category_df.values)) as progress:
+        for i, cate_seq in enumerate(item_category_df['category_seq'].values):
+            vecs.append(build_vec(str(cate_seq).split(','), item_category_map))
+            progress.update(1)
     return vecs
 
 
