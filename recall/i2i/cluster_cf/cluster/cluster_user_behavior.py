@@ -5,8 +5,9 @@ import argparse
 from collections import Counter
 
 
-def read_user_item_behavior(user_item_file, item_category_file):
+def read_user_item_behavior(args, user_item_file, item_category_file):
     user_item_df = pd.read_csv(user_item_file, names=['aid', 'item_seq', 'category_seq'], dtype={'aid': str, 'item_seq': str, 'category_seq': str}, sep='\001')
+    user_item_df = user_item_df[user_item_df.category_seq.str.split(',').str.len() > args.category_filter_num]
     item_category_df = pd.read_csv(item_category_file, names=['item_category', 'counts'], sep='\001')
     item_category_map = get_item_category_map(item_category_df)
     cluster_vec = fill_cluster_vec(user_item_df, item_category_map)
@@ -37,7 +38,8 @@ def fill_cluster_vec(item_category_df, item_category_map):
 
 
 def main(args):
-    user_item_behavior_df, cluster_vec = read_user_item_behavior(args.user_item_file, args.item_category_file)
+    user_item_behavior_df, cluster_vec = read_user_item_behavior(args, args.user_item_file, args.item_category_file)
+    print("start train kmeans")
     kmeans = KMeans(n_clusters=args.cluser_num, random_state=0).fit(cluster_vec)
     counter = Counter(kmeans.labels_)
     print(counter)
@@ -52,6 +54,7 @@ if __name__ == '__main__':
     parser.add_argument('--user_item', type=str, default='', dest='user_item_file')
     parser.add_argument('--item_category', type=str, default='', dest='item_category_file')
     parser.add_argument('--cluser_num', type=int, default=5, dest='cluser_num')
+    parser.add_argument('--category_filter_num', type=int, default=10, dest='category_filter_num')
     parser.add_argument('--output', type=str, default='user_item_behavior_df.csv', dest='output_file')
     args = parser.parse_args()
     print(args)
